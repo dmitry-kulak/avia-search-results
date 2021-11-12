@@ -8,7 +8,7 @@ import {
   SearchFilterProps,
   SortBy,
   Transfers,
-} from "../types";
+} from "../../types/types";
 import CheckboxField from "./CheckboxField";
 
 

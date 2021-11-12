@@ -3,8 +3,8 @@ import { v4 as uuid } from "uuid";
 
 
 import styles from "./Flights.module.scss";
-import Flight from "./Flight";
-import { FlightResult } from "../types";
+import Flight from "../Flight/Flight";
+import { FlightResult } from "../../types/types";
 
 
 const Flights = ({

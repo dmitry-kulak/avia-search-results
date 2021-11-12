@@ -1,8 +1,8 @@
 import React from "react";
 
 import styles from "./Flight.module.scss";
-import Leg from "./Leg";
-import { LegInterface } from "../types";
+import Leg from "../Leg/Leg";
+import { LegInterface } from "../../types/types";
 
 interface FlightProps {
   carrier: string;

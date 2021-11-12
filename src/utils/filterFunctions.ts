@@ -4,7 +4,7 @@ import {
   SortByDir,
   SortByValue,
   Transfers,
-} from "./types";
+} from "../types/types";
 
 
 export const findCarriers = (flights: FlightResult[]) => {

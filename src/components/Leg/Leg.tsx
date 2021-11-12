@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Leg.module.scss";
-import { LegInterface } from "../types";
+import { LegInterface } from "../../types/types";
 import {
   convertDateToTime,
   renderTransferName,
   showTimeTotal,
   formatDate,
-} from "../utils";
+} from "../../utils/utils";
 
 
 const Leg = ({ leg }: { leg: LegInterface },

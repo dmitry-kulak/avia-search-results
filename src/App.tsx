@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import styles from "./App.module.scss";
-import Flights from "./components/Flights";
-import SearchFilter from "./components/SearchFilter";
+import Flights from "./components/Flights/Flights";
+import SearchFilter from "./components/SearchFilter/SearchFilter";
 import {
   Filters,
   FlightResult,
-} from "./types";
-import { makeTransferFields } from "./utils";
+} from "./types/types";
+import { makeTransferFields } from "./utils/utils";
 import {
   countTransfers,
   filterByCarriers,
   filterByPrice,
   filterByTransfers,
   findCarriers, sortFlights,
-} from "./filterFunctions";
+} from "./utils/filterFunctions";
 
 
 const minPrice = 0;
