@@ -1,0 +1,115 @@
+@import "../variables";
+
+.schedule {
+  display:        flex;
+  flex-direction: column;
+  padding:        0.5rem;
+}
+
+.airports {
+  display:       flex;
+  font-size:     1.1rem;
+  border-bottom: 1px solid transparentize(gray, 0.7);
+  padding:       0.5rem;
+  
+  
+  &Departure {
+    &::after {
+      content: "⟶";
+      color:   $link;
+      margin:  0 0.5rem;
+    }
+  }
+  
+  &Arrival {
+    display: inline;
+  }
+}
+
+.IATA, .date {
+  background: none;
+  border:     none;
+  font-size:  1.1rem;
+  padding:    0;
+  color:      $link;
+  cursor:     pointer;
+  
+  &:hover {
+    color: darken($link, 10%)
+  }
+}
+
+.date {
+  margin: 0 0.5rem;
+}
+
+.time {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     center;
+  padding:         0.5rem;
+  
+  
+  &Departure {
+    display:   flex;
+    font-size: 1.2rem;
+  }
+  
+  &Total {
+    display:     flex;
+    align-items: center;
+    
+    &::before {
+      content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMjQiIGhlaWdodD0iMjQiCnZpZXdCb3g9IjAgMCAyNCAyNCIKc3R5bGU9IiBmaWxsOiMwMDAwMDA7Ij48cGF0aCBkPSJNIDEyIDIgQyA2LjQ4ODk5NzEgMiAyIDYuNDg4OTk3MSAyIDEyIEMgMiAxNy41MTEwMDMgNi40ODg5OTcxIDIyIDEyIDIyIEMgMTcuNTExMDAzIDIyIDIyIDE3LjUxMTAwMyAyMiAxMiBDIDIyIDYuNDg4OTk3MSAxNy41MTEwMDMgMiAxMiAyIHogTSAxMiA0IEMgMTYuNDMwMTIzIDQgMjAgNy41Njk4Nzc0IDIwIDEyIEMgMjAgMTYuNDMwMTIzIDE2LjQzMDEyMyAyMCAxMiAyMCBDIDcuNTY5ODc3NCAyMCA0IDE2LjQzMDEyMyA0IDEyIEMgNCA3LjU2OTg3NzQgNy41Njk4Nzc0IDQgMTIgNCB6IE0gMTEgNiBMIDExIDEyLjQxNDA2MiBMIDE1LjI5Mjk2OSAxNi43MDcwMzEgTCAxNi43MDcwMzEgMTUuMjkyOTY5IEwgMTMgMTEuNTg1OTM4IEwgMTMgNiBMIDExIDYgeiI+PC9wYXRoPjwvc3ZnPg==");
+    }
+  }
+  
+  &Arrival {
+    display:   flex;
+    font-size: 1.2rem;
+  }
+}
+
+.date {
+  display: block;
+}
+
+.transfers {
+  display:    block;
+  text-align: center;
+  color:      darken($warning, 15%);
+  position:   relative;
+  margin:     0 3rem;
+  
+  &::before {
+    content:    "";
+    display:    block;
+    width:      35%;
+    height:     2px;
+    background: transparentize(gray, 0.5);
+    position:   absolute;
+    left:       0;
+    top:        50%;
+    z-index:    -2;
+  }
+  
+  &::after {
+    content:    "";
+    display:    block;
+    width:      35%;
+    height:     2px;
+    background: transparentize(gray, 0.5);
+    position:   absolute;
+    right:      0;
+    top:        50%;
+    z-index:    -2;
+    
+  }
+  
+}
+
+.company {
+  display: block;
+  padding: 0.5rem;
+  
+}

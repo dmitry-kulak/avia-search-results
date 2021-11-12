@@ -1,0 +1,14 @@
+@import "../variables";
+
+.container {
+  display:        flex;
+  flex-direction: column;
+  width:          650px;
+}
+
+.showMoreButton {
+  width:     33%;
+  max-width: 300px;
+  margin:    1rem auto;
+  height:    2rem;
+}

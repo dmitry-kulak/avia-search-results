@@ -1,0 +1,55 @@
+.filter {
+  display:        flex;
+  flex-direction: column;
+  margin:         0 2rem;
+  width:          15rem;
+}
+
+.form {
+  display:        flex;
+  flex-direction: column;
+  
+}
+
+.inputGroup {
+  display:        flex;
+  flex-direction: column;
+  margin:         1rem 0;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.input {
+  display: flex;
+}
+
+.radioLabel, .checkboxLabel {
+  margin-bottom: 0.3rem;
+  
+  &::before {
+    content: "-";
+    margin:  0 0.3rem;
+  }
+}
+
+.priceInput {
+  height: 1rem;
+  
+  &Label {
+    margin-bottom: 1.2rem;
+    margin-right:  0.6rem;
+  }
+}
+
+// Hide arrows
+.priceInput[type="number"] {
+  -moz-appearance:    textfield;
+  -webkit-appearance: textfield;
+}
+
+.priceInput[type="number"]::-webkit-outer-spin-button,
+.priceInput[type="number"]::-webkit-inner-spin-button {
+  display: none;
+}
