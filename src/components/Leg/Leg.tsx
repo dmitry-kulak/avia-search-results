@@ -17,7 +17,7 @@ const Leg = ({ leg }: { leg: LegInterface },
   return (
     <article className={styles.schedule}>
       <div className={styles.airports}>
-        {/*Место вылета*/}
+        {/*DEPARTURE PLACE*/}
         <span className={styles.airportsDeparture}>
             {leg.segments[0].departureCity?.caption},&nbsp;
           {leg.segments[0].departureAirport.caption}&nbsp;
@@ -26,7 +26,7 @@ const Leg = ({ leg }: { leg: LegInterface },
             </button>
           </span>
 
-        {/*Место прибытия*/}
+        {/*ARRIVAL PLACE*/}
         <span className={styles.airportsArrival}>
             {leg.segments[segmentsTotal].arrivalCity?.caption},&nbsp;
           {leg.segments[segmentsTotal].arrivalAirport.caption}&nbsp;
@@ -38,7 +38,7 @@ const Leg = ({ leg }: { leg: LegInterface },
 
 
       <div className={styles.time}>
-        {/*Время вылета*/}
+        {/*DEPARTURE TIME*/}
         <span className={styles.timeDeparture}>
             {convertDateToTime(leg.segments[0].departureDate)}
           <button className={styles.date}>
@@ -46,12 +46,12 @@ const Leg = ({ leg }: { leg: LegInterface },
             </button>
           </span>
 
-        {/*Всего времени на перелет*/}
+        {/*TOTAL TIME*/}
         <span className={styles.timeTotal}>
             {showTimeTotal(leg.duration)}
           </span>
 
-        {/*Время прибытия*/}
+        {/*ARRIVAL TIME*/}
         <span className={styles.timeArrival}>
             <button className={styles.date}>
               {formatDate(leg.segments[segmentsTotal].arrivalDate)}
