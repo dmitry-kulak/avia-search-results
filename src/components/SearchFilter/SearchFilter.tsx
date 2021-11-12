@@ -53,6 +53,7 @@ const SearchFilter = ({ filters, setFilters }: SearchFilterProps) => {
           <div className={styles.input}>
             <input type="radio" name="sortBy" value="price, ASC"
                    id="price, ASC" onChange={handleRadioChange}
+                   className={styles.radioInput}
                    checked={filters.sortBy.value === "price" &&
                    filters.sortBy.dir === "ASC"}
             />
@@ -63,6 +64,7 @@ const SearchFilter = ({ filters, setFilters }: SearchFilterProps) => {
           <div className={styles.input}>
             <input type="radio" name="sortBy" value="price, DESC"
                    id="price, DESC" onChange={handleRadioChange}
+                   className={styles.radioInput}
                    checked={filters.sortBy.value === "price" &&
                    filters.sortBy.dir === "DESC"}/>
             <label className={styles.radioLabel} htmlFor="price, DESC">по
@@ -72,6 +74,7 @@ const SearchFilter = ({ filters, setFilters }: SearchFilterProps) => {
           <div className={styles.input}>
             <input type="radio" name="sortBy" value="time, ASC" id="time, ASC"
                    onChange={handleRadioChange}
+                   className={styles.radioInput}
                    checked={filters.sortBy.value === "time" &&
                    filters.sortBy.dir === "ASC"}/>
             <label className={styles.radioLabel} htmlFor="time, ASC">

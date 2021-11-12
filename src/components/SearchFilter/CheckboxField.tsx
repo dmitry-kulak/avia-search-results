@@ -36,6 +36,7 @@ const CheckboxField = ({
     <div className={styles.input}>
       <input type="checkbox" name={filterBy} id={filter}
              onChange={handleCheckboxChange}
+             className={styles.checkboxInput}
              checked={filters[filterBy][filter]}
       />
       <label className={styles.checkboxLabel} htmlFor={filter}>
