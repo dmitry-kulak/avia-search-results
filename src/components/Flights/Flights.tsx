@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 import styles from "./Flights.module.scss";
 import Flight from "../Flight/Flight";
 import { FlightResult } from "../../types/types";
+import Spinner from "../Spinner/Spinner";
 
 
 const Flights = ({
@@ -31,11 +32,13 @@ const Flights = ({
 
   return (
     <div className={styles.container}>
+      {!flights && <Spinner/>}
       {flights && renderFlights(flights)}
-      <button className={styles.showMoreButton}
-              onMouseDown={showMore}>
+
+      {flights &&
+      <button className={styles.showMoreButton} onMouseDown={showMore}>
         Показать еще
-      </button>
+      </button>}
     </div>
   );
 };

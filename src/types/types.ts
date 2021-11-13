@@ -147,6 +147,7 @@ export type Carriers = { [key: string]: boolean }
 export interface SearchFilterProps {
   filters: Filters;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  flights: FlightResult[] | null;
 }
 
 export type FilterBy = "transfers" | "carriers";

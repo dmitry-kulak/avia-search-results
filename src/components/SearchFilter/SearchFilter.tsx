@@ -10,9 +10,10 @@ import {
   Transfers,
 } from "../../types/types";
 import CheckboxField from "./CheckboxField";
+import Spinner from "../Spinner/Spinner";
 
 
-const SearchFilter = ({ filters, setFilters }: SearchFilterProps) => {
+const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
   const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValues: any = e.target.value.split(", ");
     const sortDetails: SortBy = { value: inputValues[0], dir: inputValues[1] };
@@ -28,6 +29,10 @@ const SearchFilter = ({ filters, setFilters }: SearchFilterProps) => {
 
   const renderCheckboxes = (
     filterBy: FilterBy, filter: Transfers | Carriers) => {
+    if (!flights) {
+      return <Spinner/>
+    }
+
     const rendered = [];
 
     for (let property in filter) {
