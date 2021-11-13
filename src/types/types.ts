@@ -157,3 +157,9 @@ export interface CheckboxProps {
   filters: Filters;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 }
+
+export interface FlightProps {
+  carrier: string;
+  price: string;
+  legs: LegInterface[];
+}
