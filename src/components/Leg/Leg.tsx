@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from "./Leg.module.scss";
 import { LegInterface } from "../../types/types";
 import {

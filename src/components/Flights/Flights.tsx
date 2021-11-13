@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 
-
 import styles from "./Flights.module.scss";
 import Flight from "../Flight/Flight";
 import { FlightResult } from "../../types/types";
@@ -11,7 +10,6 @@ const Flights = ({
   flights,
 }: { flights: FlightResult[] | null }) => {
   const [numberOfFlights, setNumberOfFlights] = useState(5);
-
 
   const renderFlights = (flights: FlightResult[]) => {
     return flights.map(currFlight => {

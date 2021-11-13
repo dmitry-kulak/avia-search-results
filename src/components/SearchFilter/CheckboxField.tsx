@@ -1,4 +1,5 @@
 import React from "react";
+
 import styles from "./SearchFilter.module.scss";
 import { CheckboxProps, FilterBy } from "../../types/types";
 import { renderTransferName } from "../../utils/utils";
@@ -10,7 +11,6 @@ const CheckboxField = ({
   filters,
   setFilters,
 }: CheckboxProps) => {
-
   const renderLabel = (filterBy: FilterBy, filter: string) => {
     if (filterBy === "transfers") {
       return renderTransferName(filter);
@@ -30,7 +30,6 @@ const CheckboxField = ({
       },
     });
   };
-
 
   return (
     <div className={styles.input}>
