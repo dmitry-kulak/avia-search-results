@@ -33,6 +33,7 @@ const App = () => {
   const [filteredFlights, setFilteredFlights] = useState<FlightResult[] | null>(
     null);
   const [filters, setFilters] = useState<Filters>(initialFilters);
+  const [numberOfFlightsToShow, setNumberOfFlightsToShow] = useState(5);
 
   useEffect(() => {
     const fetchFlights = async () => {
@@ -73,6 +74,8 @@ const App = () => {
   // FILTER FLIGHTS
   useEffect(() => {
     if (flights) {
+      setNumberOfFlightsToShow(5);
+
       let newFilteredFlights: FlightResult[] = flights.slice();
 
       newFilteredFlights = filterByTransfers(newFilteredFlights,
@@ -91,7 +94,9 @@ const App = () => {
     <div className={styles.app}>
       <SearchFilter filters={filters} setFilters={setFilters}
                     flights={filteredFlights}/>
-      <Flights flights={filteredFlights}/>
+      <Flights flights={filteredFlights}
+               numberOfFlightsToShow={numberOfFlightsToShow}
+               setNumberOfFlightsToShow={setNumberOfFlightsToShow}/>
     </div>
   );
 };
