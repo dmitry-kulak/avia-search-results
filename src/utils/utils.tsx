@@ -81,7 +81,7 @@ export const months = [
 
 export const makeTransferFields = (start: number, end: number) => {
   let fields = [];
-  for (let i = start; i <= end; i++) {
+  for (let i = end; i >= start; i--) {
     fields.push(`${i}-transfers`);
   }
 
