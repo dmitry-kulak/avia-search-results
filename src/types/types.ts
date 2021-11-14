@@ -159,6 +159,12 @@ export interface CheckboxProps {
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 }
 
+export interface FlightsProps {
+  flights: FlightResult[] | null,
+  numberOfFlightsToShow: number;
+  setNumberOfFlightsToShow: React.Dispatch<React.SetStateAction<number>>
+}
+
 export interface FlightProps {
   carrier: string;
   price: string;
