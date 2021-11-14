@@ -20,45 +20,45 @@ const Leg = ({ leg }: { leg: LegInterface },
       <div className={styles.airports}>
         {/*DEPARTURE PLACE*/}
         <span className={styles.airportsDeparture}>
-            {leg.segments[0].departureCity?.caption},&nbsp;
+          {leg.segments[0].departureCity?.caption},&nbsp;
           {leg.segments[0].departureAirport.caption}&nbsp;
           <button className={styles.IATA}>
-              {leg.segments[0].departureAirport.uid}
-            </button>
-          </span>
+              ({leg.segments[0].departureAirport.uid})
+          </button>
+        </span>
 
         {/*ARRIVAL PLACE*/}
         <span className={styles.airportsArrival}>
-            {leg.segments[segmentsTotal].arrivalCity?.caption},&nbsp;
+          {leg.segments[segmentsTotal].arrivalCity?.caption},&nbsp;
           {leg.segments[segmentsTotal].arrivalAirport.caption}&nbsp;
           <button className={styles.IATA}>
-              {leg.segments[segmentsTotal].arrivalAirport.uid}
-            </button>
-          </span>
+              ({leg.segments[segmentsTotal].arrivalAirport.uid})
+          </button>
+        </span>
       </div>
 
 
       <div className={styles.time}>
         {/*DEPARTURE TIME*/}
         <span className={styles.timeDeparture}>
-            {convertDateToTime(leg.segments[0].departureDate)}
+          {convertDateToTime(leg.segments[0].departureDate)}
           <button className={styles.date}>
               {formatDate(leg.segments[0].departureDate)}
-            </button>
-          </span>
+          </button>
+        </span>
 
         {/*TOTAL TIME*/}
         <span className={styles.timeTotal}>
             {showTimeTotal(leg.duration)}
-          </span>
+        </span>
 
         {/*ARRIVAL TIME*/}
         <span className={styles.timeArrival}>
-            <button className={styles.date}>
-              {formatDate(leg.segments[segmentsTotal].arrivalDate)}
-            </button>
+          <button className={styles.date}>
+            {formatDate(leg.segments[segmentsTotal].arrivalDate)}
+          </button>
           {convertDateToTime(leg.segments[segmentsTotal].arrivalDate)}
-          </span>
+        </span>
       </div>
 
       <div className={styles.transfers}>
