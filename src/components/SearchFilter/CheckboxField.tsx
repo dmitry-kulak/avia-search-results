@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./SearchFilter.module.scss";
 import { CheckboxProps, FilterBy } from "../../types/types";
 import { renderTransferName } from "../../utils/utils";

@@ -1,4 +1,3 @@
-import React from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 import styles from "./SearchFilter.module.scss";

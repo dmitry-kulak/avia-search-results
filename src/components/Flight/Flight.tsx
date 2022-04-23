@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./Flight.module.scss";
 import Leg from "../Leg/Leg";
 import { FlightProps } from "../../types/types";

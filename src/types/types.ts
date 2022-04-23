@@ -1,4 +1,4 @@
-import React from "react";
+import type { Dispatch, SetStateAction } from "react";
 
 interface GenericField {
   caption: string;
@@ -145,7 +145,7 @@ export type Carriers = { [key: string]: boolean };
 
 export interface SearchFilterProps {
   filters: Filters;
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  setFilters: Dispatch<SetStateAction<Filters>>;
   flights: FlightResult[] | null;
 }
 
@@ -155,13 +155,13 @@ export interface CheckboxProps {
   filterBy: FilterBy;
   filter: string;
   filters: Filters;
-  setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  setFilters: Dispatch<SetStateAction<Filters>>;
 }
 
 export interface FlightsProps {
   flights: FlightResult[] | null;
   numberOfFlightsToShow: number;
-  setNumberOfFlightsToShow: React.Dispatch<React.SetStateAction<number>>;
+  setNumberOfFlightsToShow: Dispatch<SetStateAction<number>>;
 }
 
 export interface FlightProps {

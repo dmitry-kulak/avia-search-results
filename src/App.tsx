@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./App.module.scss";
 import Flights from "./components/Flights/Flights";
