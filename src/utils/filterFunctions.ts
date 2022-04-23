@@ -1,10 +1,5 @@
-import {
-  Carriers,
-  FlightResult,
-  SortByDir,
-  SortByValue,
-  Transfers,
-} from "../types/types";
+import type { Carriers, SortByDir, SortByValue, Transfers } from "../types/filters";
+import type { FlightResult } from "../types/flights";
 
 export const findCarriers = (flights: FlightResult[]) => {
   let carriers = new Set();

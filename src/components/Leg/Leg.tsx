@@ -1,5 +1,6 @@
+import type { LegInterface } from "../../types/flights";
+
 import styles from "./Leg.module.scss";
-import { LegInterface } from "../../types/types";
 import {
   convertDateToTime,
   renderTransferName,
@@ -7,8 +8,10 @@ import {
   formatDate,
 } from "../../utils/utils";
 
-const Leg = ({ leg }: { leg: LegInterface }) => {
-  // also known as the last segment
+type LegProps = { leg: LegInterface };
+
+// leg is the last segment of flight
+const Leg = ({ leg }: LegProps) => {
   const segmentsTotal = leg.segments.length - 1;
 
   return (

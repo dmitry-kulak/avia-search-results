@@ -1,9 +1,17 @@
 import { v4 as uuid } from "uuid";
 
+import type { FlightResult } from "../../types/flights";
+import type { Dispatch, SetStateAction, MouseEvent } from "react";
+
 import styles from "./Flights.module.scss";
 import Flight from "../Flight/Flight";
-import { FlightResult, FlightsProps } from "../../types/types";
 import Spinner from "../Spinner/Spinner";
+
+type FlightsProps = {
+  flights: FlightResult[] | null;
+  numberOfFlightsToShow: number;
+  setNumberOfFlightsToShow: Dispatch<SetStateAction<number>>;
+};
 
 const Flights = ({
   flights,
@@ -26,7 +34,7 @@ const Flights = ({
       .slice(0, numberOfFlightsToShow);
   };
 
-  const showMore = (e: React.MouseEvent) => {
+  const showMore = (e: MouseEvent) => {
     e.preventDefault();
     setNumberOfFlightsToShow(numberOfFlightsToShow + 5);
   };

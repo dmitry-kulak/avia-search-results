@@ -1,31 +1,10 @@
-import type { Dispatch, SetStateAction } from "react";
+import type {
+  CurrencyCodes,
+  GenericField,
+  GenericPriceField,
+  TariffNames,
+} from "./commonTypes";
 
-interface GenericField {
-  caption: string;
-  uid: string;
-}
-
-interface GenericPriceField {
-  amount: string;
-  currency: Currencies;
-  currencyCode: CurrencyCodes;
-}
-
-// TODO добавить остальные валюты
-type Currencies = "руб.";
-type CurrencyCodes = "RUB" | "EUR" | "USD";
-type TariffNames =
-  | "ECONOMY LITE"
-  | "ECONOMY LITE2"
-  | "ECONOMY GREEN"
-  | "ECONOMY CLASSIC"
-  | "ECONOMY STANDARD"
-  | "ECONOMY SAVER"
-  | "ECONOMY GREEN CLASSIC"
-  | "BUSINESS CLASS"
-  | "BUSINESS FLEX";
-
-// FLIGHTS
 export interface FlightResult {
   flightToken: string;
   hasExtenderFare: boolean;
@@ -121,51 +100,4 @@ export interface PassengerPrice {
 export interface Rate {
   amount: string;
   currencyCode: CurrencyCodes;
-}
-
-// FILTERS
-export interface Filters {
-  sortBy: SortBy;
-  transfers: Transfers;
-  priceFrom: number;
-  priceTo: number;
-  carriers: Carriers;
-}
-
-export interface SortBy {
-  value: SortByValue;
-  dir: SortByDir;
-}
-
-export type SortByValue = "price" | "time";
-export type SortByDir = "ASC" | "DESC";
-
-export type Transfers = { [key: string]: boolean };
-export type Carriers = { [key: string]: boolean };
-
-export interface SearchFilterProps {
-  filters: Filters;
-  setFilters: Dispatch<SetStateAction<Filters>>;
-  flights: FlightResult[] | null;
-}
-
-export type FilterBy = "transfers" | "carriers";
-
-export interface CheckboxProps {
-  filterBy: FilterBy;
-  filter: string;
-  filters: Filters;
-  setFilters: Dispatch<SetStateAction<Filters>>;
-}
-
-export interface FlightsProps {
-  flights: FlightResult[] | null;
-  numberOfFlightsToShow: number;
-  setNumberOfFlightsToShow: Dispatch<SetStateAction<number>>;
-}
-
-export interface FlightProps {
-  carrier: string;
-  price: string;
-  legs: LegInterface[];
 }

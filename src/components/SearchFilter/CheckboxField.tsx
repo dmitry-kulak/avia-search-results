@@ -1,8 +1,17 @@
+import type { Dispatch, SetStateAction } from "react";
+import type { FilterBy, Filters } from "../../types/filters";
+
 import styles from "./SearchFilter.module.scss";
-import { CheckboxProps, FilterBy } from "../../types/types";
 import { renderTransferName } from "../../utils/utils";
 
-const CheckboxField = ({ filterBy, filter, filters, setFilters }: CheckboxProps) => {
+type CheckboxFieldProps = {
+  filterBy: FilterBy;
+  filter: string;
+  filters: Filters;
+  setFilters: Dispatch<SetStateAction<Filters>>;
+};
+
+const CheckboxField = ({ filterBy, filter, filters, setFilters }: CheckboxFieldProps) => {
   const renderLabel = (filterBy: FilterBy, filter: string) => {
     if (filterBy === "transfers") {
       return renderTransferName(filter);

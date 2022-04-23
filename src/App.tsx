@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 
+import type { Filters } from "./types/filters";
+import type { FlightResult } from "./types/flights";
+
 import styles from "./App.module.scss";
 import Flights from "./components/Flights/Flights";
 import SearchFilter from "./components/SearchFilter/SearchFilter";
-import { Filters, FlightResult } from "./types/types";
 import { makeTransferFields } from "./utils/utils";
 import {
   countTransfers,

@@ -1,6 +1,13 @@
+import type { LegInterface } from "../../types/flights";
+
 import styles from "./Flight.module.scss";
 import Leg from "../Leg/Leg";
-import { FlightProps } from "../../types/types";
+
+type FlightProps = {
+  carrier: string;
+  price: string;
+  legs: LegInterface[];
+};
 
 const Flight = ({ carrier, legs, price }: FlightProps) => {
   return (

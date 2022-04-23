@@ -1,15 +1,18 @@
 import { useDebouncedCallback } from "use-debounce";
 
+import type { Carriers, FilterBy, Filters, SortBy, Transfers } from "../../types/filters";
+import type { Dispatch, SetStateAction } from "react";
+import type { FlightResult } from "../../types/flights";
+
 import styles from "./SearchFilter.module.scss";
-import {
-  Carriers,
-  FilterBy,
-  SearchFilterProps,
-  SortBy,
-  Transfers,
-} from "../../types/types";
 import CheckboxField from "./CheckboxField";
 import Spinner from "../Spinner/Spinner";
+
+type SearchFilterProps = {
+  filters: Filters;
+  setFilters: Dispatch<SetStateAction<Filters>>;
+  flights: FlightResult[] | null;
+};
 
 const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
   const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
