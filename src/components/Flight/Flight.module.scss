@@ -1,47 +1,47 @@
 @import "../../variables";
 
 .card {
-  display:        flex;
+  display: flex;
   flex-direction: column;
-  width:          650px;
+  width: 650px;
 }
 
 .header {
-  display:          flex;
-  justify-content:  space-between;
-  color:            white;
+  display: flex;
+  justify-content: space-between;
+  color: white;
   background-color: $primary;
-  padding:          0.5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .right {
-  display:        flex;
+  display: flex;
   flex-direction: column;
-  align-items:    flex-end;
-  line-height:    1;
+  align-items: flex-end;
+  line-height: 1;
 }
 
 .price {
-  display:   block;
+  display: block;
   font-size: 1.5rem;
 }
 
 .separationLine {
   background-color: $primary;
-  width:            100%;
-  height:           2px;
+  width: 100%;
+  height: 2px;
 }
 
 .chooseButton {
-  border:           none;
-  color:            white;
+  border: none;
+  color: white;
   background-color: $warning;
-  padding:          1rem;
-  transition:       background-color 0.08s;
-  font-size:        1.1rem;
-  margin-bottom:    2rem;
-  cursor:           pointer;
-  
+  padding: 1rem;
+  transition: background-color 0.08s;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+
   &:hover {
     background-color: darken($warning, 10%);
   }

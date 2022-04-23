@@ -4,13 +4,7 @@ import styles from "./SearchFilter.module.scss";
 import { CheckboxProps, FilterBy } from "../../types/types";
 import { renderTransferName } from "../../utils/utils";
 
-
-const CheckboxField = ({
-  filterBy,
-  filter,
-  filters,
-  setFilters,
-}: CheckboxProps) => {
+const CheckboxField = ({ filterBy, filter, filters, setFilters }: CheckboxProps) => {
   const renderLabel = (filterBy: FilterBy, filter: string) => {
     if (filterBy === "transfers") {
       return renderTransferName(filter);
@@ -33,10 +27,13 @@ const CheckboxField = ({
 
   return (
     <div className={styles.input}>
-      <input type="checkbox" name={filterBy} id={filter}
-             onChange={handleCheckboxChange}
-             className={styles.checkboxInput}
-             checked={filters[filterBy][filter]}
+      <input
+        type="checkbox"
+        name={filterBy}
+        id={filter}
+        onChange={handleCheckboxChange}
+        className={styles.checkboxInput}
+        checked={filters[filterBy][filter]}
       />
       <label className={styles.checkboxLabel} htmlFor={filter}>
         {renderLabel(filterBy, filter)}

@@ -4,7 +4,6 @@ import styles from "./Flight.module.scss";
 import Leg from "../Leg/Leg";
 import { FlightProps } from "../../types/types";
 
-
 const Flight = ({ carrier, legs, price }: FlightProps) => {
   return (
     <div className={styles.card}>
@@ -17,15 +16,15 @@ const Flight = ({ carrier, legs, price }: FlightProps) => {
         </div>
       </header>
 
-      <Leg leg={legs[0]}/>
+      <Leg leg={legs[0]} />
 
-      {legs.length > 1 &&
-      <>
-        <span className={styles.separationLine}/>
-        <Leg leg={legs[1]}/>
-      </>}
+      {legs.length > 1 && (
+        <>
+          <span className={styles.separationLine} />
+          <Leg leg={legs[1]} />
+        </>
+      )}
       <button className={styles.chooseButton}>ВЫБРАТЬ</button>
-
     </div>
   );
 };

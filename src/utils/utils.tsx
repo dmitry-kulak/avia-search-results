@@ -51,18 +51,12 @@ export const convertDateToTime = (date: string) => {
 export const formatDate = (date: string) => {
   const dateObj = new Date(date);
 
-  return `${dateObj.getDate()} ${months[dateObj.getMonth()]} ${daysOfWeek[dateObj.getDay()]}`;
+  return `${dateObj.getDate()} ${months[dateObj.getMonth()]} ${
+    daysOfWeek[dateObj.getDay()]
+  }`;
 };
 
-export const daysOfWeek = [
-  "вс",
-  "пн",
-  "вт",
-  "ср",
-  "чт",
-  "пт",
-  "сб",
-];
+export const daysOfWeek = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
 
 export const months = [
   "янв.",

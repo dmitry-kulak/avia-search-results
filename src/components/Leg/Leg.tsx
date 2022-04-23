@@ -9,9 +9,7 @@ import {
   formatDate,
 } from "../../utils/utils";
 
-
-const Leg = ({ leg }: { leg: LegInterface },
-) => {
+const Leg = ({ leg }: { leg: LegInterface }) => {
   // also known as the last segment
   const segmentsTotal = leg.segments.length - 1;
 
@@ -23,7 +21,7 @@ const Leg = ({ leg }: { leg: LegInterface },
           {leg.segments[0].departureCity?.caption},&nbsp;
           {leg.segments[0].departureAirport.caption}&nbsp;
           <button className={styles.IATA}>
-              ({leg.segments[0].departureAirport.uid})
+            ({leg.segments[0].departureAirport.uid})
           </button>
         </span>
 
@@ -32,25 +30,22 @@ const Leg = ({ leg }: { leg: LegInterface },
           {leg.segments[segmentsTotal].arrivalCity?.caption},&nbsp;
           {leg.segments[segmentsTotal].arrivalAirport.caption}&nbsp;
           <button className={styles.IATA}>
-              ({leg.segments[segmentsTotal].arrivalAirport.uid})
+            ({leg.segments[segmentsTotal].arrivalAirport.uid})
           </button>
         </span>
       </div>
-
 
       <div className={styles.time}>
         {/*DEPARTURE TIME*/}
         <span className={styles.timeDeparture}>
           {convertDateToTime(leg.segments[0].departureDate)}
           <button className={styles.date}>
-              {formatDate(leg.segments[0].departureDate)}
+            {formatDate(leg.segments[0].departureDate)}
           </button>
         </span>
 
         {/*TOTAL TIME*/}
-        <span className={styles.timeTotal}>
-            {showTimeTotal(leg.duration)}
-        </span>
+        <span className={styles.timeTotal}>{showTimeTotal(leg.duration)}</span>
 
         {/*ARRIVAL TIME*/}
         <span className={styles.timeArrival}>
@@ -61,9 +56,7 @@ const Leg = ({ leg }: { leg: LegInterface },
         </span>
       </div>
 
-      <div className={styles.transfers}>
-        {renderTransferName(segmentsTotal)}
-      </div>
+      <div className={styles.transfers}>{renderTransferName(segmentsTotal)}</div>
       <div className={styles.company}>
         Рейс выполняет: {leg.segments[0].airline.caption}
       </div>

@@ -6,24 +6,25 @@ import Flight from "../Flight/Flight";
 import { FlightResult, FlightsProps } from "../../types/types";
 import Spinner from "../Spinner/Spinner";
 
-
 const Flights = ({
   flights,
   numberOfFlightsToShow,
   setNumberOfFlightsToShow,
 }: FlightsProps) => {
-
   const renderFlights = (flights: FlightResult[]) => {
-    return flights.map(currFlight => {
-      const { flight } = currFlight;
-      return (
-        <Flight
-          carrier={flight.carrier.caption}
-          legs={flight.legs}
-          price={flight.price.total.amount}
-          key={uuid()}
-        />);
-    }).slice(0, numberOfFlightsToShow);
+    return flights
+      .map((currFlight) => {
+        const { flight } = currFlight;
+        return (
+          <Flight
+            carrier={flight.carrier.caption}
+            legs={flight.legs}
+            price={flight.price.total.amount}
+            key={uuid()}
+          />
+        );
+      })
+      .slice(0, numberOfFlightsToShow);
   };
 
   const showMore = (e: React.MouseEvent) => {
@@ -32,11 +33,12 @@ const Flights = ({
   };
 
   const renderShowMoreButton = (flights: FlightResult[] | null) => {
-    if (flights && flights.length > 0 &&
-      numberOfFlightsToShow < flights.length) {
-      return <button className={styles.showMoreButton} onMouseDown={showMore}>
-        Показать еще
-      </button>;
+    if (flights && flights.length > 0 && numberOfFlightsToShow < flights.length) {
+      return (
+        <button className={styles.showMoreButton} onMouseDown={showMore}>
+          Показать еще
+        </button>
+      );
     }
 
     if (flights && flights.length === 0) {
@@ -46,7 +48,7 @@ const Flights = ({
 
   return (
     <div className={styles.container}>
-      {!flights && <Spinner/>}
+      {!flights && <Spinner />}
       {flights && renderFlights(flights)}
 
       {renderShowMoreButton(flights)}

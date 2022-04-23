@@ -1,21 +1,21 @@
 @import "../../variables";
 
 .container {
-  display:        flex;
+  display: flex;
   flex-direction: column;
-  width:          650px;
+  width: 650px;
 }
 
 .showMoreButton {
-  width:     33%;
+  width: 33%;
   max-width: 300px;
-  margin:    1rem auto;
-  height:    2rem;
-  cursor:    pointer;
+  margin: 1rem auto;
+  height: 2rem;
+  cursor: pointer;
 }
 
 .failure {
   text-align: center;
-  margin:     5rem;
-  font-size:  2rem;
+  margin: 5rem;
+  font-size: 2rem;
 }

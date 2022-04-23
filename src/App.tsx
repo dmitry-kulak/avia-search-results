@@ -3,19 +3,16 @@ import React, { useEffect, useState } from "react";
 import styles from "./App.module.scss";
 import Flights from "./components/Flights/Flights";
 import SearchFilter from "./components/SearchFilter/SearchFilter";
-import {
-  Filters,
-  FlightResult,
-} from "./types/types";
+import { Filters, FlightResult } from "./types/types";
 import { makeTransferFields } from "./utils/utils";
 import {
   countTransfers,
   filterByCarriers,
   filterByPrice,
   filterByTransfers,
-  findCarriers, sortFlights,
+  findCarriers,
+  sortFlights,
 } from "./utils/filterFunctions";
-
 
 const minPrice = 0;
 const maxPrice = 1000000;
@@ -30,8 +27,7 @@ const initialFilters: Filters = {
 
 const App = () => {
   const [flights, setFlights] = useState<FlightResult[] | null>(null);
-  const [filteredFlights, setFilteredFlights] = useState<FlightResult[] | null>(
-    null);
+  const [filteredFlights, setFilteredFlights] = useState<FlightResult[] | null>(null);
   const [filters, setFilters] = useState<Filters>(initialFilters);
   const [numberOfFlightsToShow, setNumberOfFlightsToShow] = useState(5);
 
@@ -48,17 +44,17 @@ const App = () => {
   // SET TRANSFERS AND CARRIERS FILTERS ON FETCH
   useEffect(() => {
     if (flights) {
-      setFilteredFlights((flights));
+      setFilteredFlights(flights);
 
       const carriers = findCarriers(flights);
       const carriersFilter: { [key: string]: boolean } = {};
-      carriers.forEach(carrier => {
+      carriers.forEach((carrier) => {
         carriersFilter[carrier] = false;
       });
 
       const transfers = makeTransferFields(0, countTransfers(flights));
       const transfersFilter: { [key: string]: boolean } = {};
-      transfers.forEach(carrier => {
+      transfers.forEach((carrier) => {
         transfersFilter[carrier] = false;
       });
 
@@ -70,7 +66,6 @@ const App = () => {
     }
   }, [flights]);
 
-
   // FILTER FLIGHTS
   useEffect(() => {
     if (flights) {
@@ -78,12 +73,13 @@ const App = () => {
 
       let newFilteredFlights: FlightResult[] = flights.slice();
 
-      newFilteredFlights = filterByTransfers(newFilteredFlights,
-        filters.transfers);
-      newFilteredFlights = filterByCarriers(newFilteredFlights,
-        filters.carriers);
-      newFilteredFlights = filterByPrice(newFilteredFlights, filters.priceFrom,
-        filters.priceTo);
+      newFilteredFlights = filterByTransfers(newFilteredFlights, filters.transfers);
+      newFilteredFlights = filterByCarriers(newFilteredFlights, filters.carriers);
+      newFilteredFlights = filterByPrice(
+        newFilteredFlights,
+        filters.priceFrom,
+        filters.priceTo
+      );
       newFilteredFlights = sortFlights(newFilteredFlights, filters.sortBy);
 
       setFilteredFlights(newFilteredFlights);
@@ -92,15 +88,14 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <SearchFilter filters={filters} setFilters={setFilters}
-                    flights={filteredFlights}/>
-      <Flights flights={filteredFlights}
-               numberOfFlightsToShow={numberOfFlightsToShow}
-               setNumberOfFlightsToShow={setNumberOfFlightsToShow}/>
+      <SearchFilter filters={filters} setFilters={setFilters} flights={filteredFlights} />
+      <Flights
+        flights={filteredFlights}
+        numberOfFlightsToShow={numberOfFlightsToShow}
+        setNumberOfFlightsToShow={setNumberOfFlightsToShow}
+      />
     </div>
   );
 };
 
 export default App;
-
-

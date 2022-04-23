@@ -1,6 +1,5 @@
 import React from "react";
 
-
 interface GenericField {
   caption: string;
   uid: string;
@@ -13,10 +12,10 @@ interface GenericPriceField {
 }
 
 // TODO добавить остальные валюты
-type Currencies = "руб."
-type CurrencyCodes = "RUB" | "EUR" | "USD"
+type Currencies = "руб.";
+type CurrencyCodes = "RUB" | "EUR" | "USD";
 type TariffNames =
-  "ECONOMY LITE"
+  | "ECONOMY LITE"
   | "ECONOMY LITE2"
   | "ECONOMY GREEN"
   | "ECONOMY CLASSIC"
@@ -25,7 +24,6 @@ type TariffNames =
   | "ECONOMY GREEN CLASSIC"
   | "BUSINESS CLASS"
   | "BUSINESS FLEX";
-
 
 // FLIGHTS
 export interface FlightResult {
@@ -63,7 +61,10 @@ export interface Price {
 }
 
 export interface Refund {
-  ADULT: { refundableAfterDeparture: boolean; refundableBeforeDeparture: boolean };
+  ADULT: {
+    refundableAfterDeparture: boolean;
+    refundableBeforeDeparture: boolean;
+  };
 }
 
 export interface Seats {
@@ -122,7 +123,6 @@ export interface Rate {
   currencyCode: CurrencyCodes;
 }
 
-
 // FILTERS
 export interface Filters {
   sortBy: SortBy;
@@ -132,7 +132,6 @@ export interface Filters {
   carriers: Carriers;
 }
 
-
 export interface SortBy {
   value: SortByValue;
   dir: SortByDir;
@@ -141,8 +140,8 @@ export interface SortBy {
 export type SortByValue = "price" | "time";
 export type SortByDir = "ASC" | "DESC";
 
-export type Transfers = { [key: string]: boolean }
-export type Carriers = { [key: string]: boolean }
+export type Transfers = { [key: string]: boolean };
+export type Carriers = { [key: string]: boolean };
 
 export interface SearchFilterProps {
   filters: Filters;
@@ -160,9 +159,9 @@ export interface CheckboxProps {
 }
 
 export interface FlightsProps {
-  flights: FlightResult[] | null,
+  flights: FlightResult[] | null;
   numberOfFlightsToShow: number;
-  setNumberOfFlightsToShow: React.Dispatch<React.SetStateAction<number>>
+  setNumberOfFlightsToShow: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface FlightProps {

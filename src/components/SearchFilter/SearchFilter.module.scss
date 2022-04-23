@@ -1,20 +1,19 @@
 .filter {
-  display:        flex;
+  display: flex;
   flex-direction: column;
-  margin:         0 2rem;
-  width:          15rem;
+  margin: 0 2rem;
+  width: 15rem;
 }
 
 .form {
-  display:        flex;
+  display: flex;
   flex-direction: column;
-  
 }
 
 .inputGroup {
-  display:        flex;
+  display: flex;
   flex-direction: column;
-  margin:         1rem 0;
+  margin: 1rem 0;
 }
 
 .title {
@@ -25,25 +24,27 @@
   display: flex;
 }
 
-.radioLabel, .checkboxLabel {
+.radioLabel,
+.checkboxLabel {
   margin-bottom: 0.3rem;
   cursor: pointer;
-  
+
   &::before {
     content: "-";
-    margin:  0 0.3rem;
+    margin: 0 0.3rem;
   }
 }
 
 .priceInput {
   height: 1rem;
-  
+
   &Label {
     margin-bottom: 1.2rem;
-    margin-right:  0.6rem;
+    margin-right: 0.6rem;
   }
 }
 
-.radioInput, .checkboxInput {
+.radioInput,
+.checkboxInput {
   cursor: pointer;
 }

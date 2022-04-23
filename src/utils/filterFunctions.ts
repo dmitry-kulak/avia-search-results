@@ -6,7 +6,6 @@ import {
   Transfers,
 } from "../types/types";
 
-
 export const findCarriers = (flights: FlightResult[]) => {
   let carriers = new Set();
   for (let flight of flights) {
@@ -28,7 +27,6 @@ export const countTransfers = (flights: FlightResult[]) => {
 
   return transfers;
 };
-
 
 export const sortByPrice = (flights: FlightResult[], dir: SortByDir) => {
   const sortByPriceAsc = (flights: FlightResult[]) => {
@@ -55,15 +53,21 @@ export const sortByPrice = (flights: FlightResult[], dir: SortByDir) => {
 export const sortByTime = (flights: FlightResult[], dir: SortByDir) => {
   const sortByTimeAsc = (flights: FlightResult[]) => {
     return [...flights].sort((a, b) => {
-      return (+a.flight.legs[0].duration + +a.flight.legs[1].duration) -
-        (+b.flight.legs[0].duration + +b.flight.legs[1].duration);
+      return (
+        +a.flight.legs[0].duration +
+        +a.flight.legs[1].duration -
+        (+b.flight.legs[0].duration + +b.flight.legs[1].duration)
+      );
     });
   };
 
   const sortByTimeDesc = (flights: FlightResult[]) => {
     return [...flights].sort((a, b) => {
-      return (+b.flight.legs[0].duration + +b.flight.legs[1].duration) -
-        (+a.flight.legs[0].duration + +a.flight.legs[1].duration);
+      return (
+        +b.flight.legs[0].duration +
+        +b.flight.legs[1].duration -
+        (+a.flight.legs[0].duration + +a.flight.legs[1].duration)
+      );
     });
   };
 
@@ -76,10 +80,10 @@ export const sortByTime = (flights: FlightResult[], dir: SortByDir) => {
   }
 };
 
-
 export const sortFlights = (
   flights: FlightResult[],
-  { value, dir }: { value: SortByValue; dir: SortByDir }) => {
+  { value, dir }: { value: SortByValue; dir: SortByDir }
+) => {
   switch (value) {
     case "price":
       return sortByPrice(flights, dir);
@@ -89,8 +93,7 @@ export const sortFlights = (
   }
 };
 
-export const filterByTransfers = (
-  flights: FlightResult[], transfers: Transfers) => {
+export const filterByTransfers = (flights: FlightResult[], transfers: Transfers) => {
   let filteredFlights: FlightResult[] = [...flights];
   const activeTransfersFilters: number[] = [];
 
@@ -103,17 +106,16 @@ export const filterByTransfers = (
   // edge case for zero-transfers
   if (activeTransfersFilters[0] === 0 && activeTransfersFilters.length === 1) {
     activeTransfersFilters.forEach(() => {
-      filteredFlights = filteredFlights.filter(flight => {
-        return flight.flight.legs.every(leg => leg.segments.length - 1 ===
-          activeTransfersFilters[0],
+      filteredFlights = filteredFlights.filter((flight) => {
+        return flight.flight.legs.every(
+          (leg) => leg.segments.length - 1 === activeTransfersFilters[0]
         );
       });
     });
-
   }
 
   activeTransfersFilters.forEach(() => {
-    filteredFlights = filteredFlights.filter(flight => {
+    filteredFlights = filteredFlights.filter((flight) => {
       for (let leg of flight.flight.legs) {
         if (activeTransfersFilters.includes(leg.segments.length - 1)) {
           return true;
@@ -127,8 +129,7 @@ export const filterByTransfers = (
   return filteredFlights;
 };
 
-export const filterByCarriers = (
-  flights: FlightResult[], carriers: Carriers) => {
+export const filterByCarriers = (flights: FlightResult[], carriers: Carriers) => {
   let filteredFlights: FlightResult[] = [...flights];
   const activeFilters: string[] = [];
 
@@ -143,15 +144,17 @@ export const filterByCarriers = (
   }
 
   activeFilters.forEach(() => {
-    filteredFlights = filteredFlights.filter(
-      flight => activeFilters.includes(flight.flight.carrier.caption));
+    filteredFlights = filteredFlights.filter((flight) =>
+      activeFilters.includes(flight.flight.carrier.caption)
+    );
   });
 
   return filteredFlights;
 };
 
-export const filterByPrice = (
-  flights: FlightResult[], min: number, max: number) => {
-  return flights.filter(flight => +flight.flight.price.total.amount >= min &&
-    +flight.flight.price.total.amount <= max);
+export const filterByPrice = (flights: FlightResult[], min: number, max: number) => {
+  return flights.filter(
+    (flight) =>
+      +flight.flight.price.total.amount >= min && +flight.flight.price.total.amount <= max
+  );
 };
