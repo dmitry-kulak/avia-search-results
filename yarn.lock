@@ -834,7 +834,6 @@ __metadata:
     react-dom: ^18.0.0
     sass: ^1.50.1
     typescript: ^4.6.3
-    use-debounce: ^7.0.1
     uuid: ^8.3.2
     vite: ^2.9.5
   languageName: unknown
@@ -3514,15 +3513,6 @@ __metadata:
   dependencies:
     punycode: ^2.1.0
   checksum: 7167432de6817fe8e9e0c9684f1d2de2bb688c94388f7569f7dbdb1587c9f4ca2a77962f134ec90be0cc4d004c939ff0d05acc9f34a0db39a3c797dada262633
-  languageName: node
-  linkType: hard
-
-"use-debounce@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "use-debounce@npm:7.0.1"
-  peerDependencies:
-    react: ">=16.8.0"
-  checksum: c5c1c34ccef6c11fe25fecef983a07f5a7260fce77b58f0f648f6ae08693a22a9077b5362b96154896e9ea756e6aaea303eb44550a293456cecb6f15cf87d73b
   languageName: node
   linkType: hard
 

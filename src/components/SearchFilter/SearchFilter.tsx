@@ -1,4 +1,4 @@
-import { useDebouncedCallback } from "use-debounce";
+import { useTransition } from "react";
 
 import type { Carriers, FilterBy, Filters, SortBy, Transfers } from "../../types/filters";
 import type { ChangeEvent, Dispatch, SetStateAction } from "react";
@@ -15,6 +15,7 @@ type SearchFilterProps = {
 };
 
 const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
+  const [, startTransition] = useTransition();
   const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValues: any = e.target.value.split(", ");
     const sortDetails: SortBy = { value: inputValues[0], dir: inputValues[1] };
@@ -23,10 +24,10 @@ const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
   };
 
   const handleNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFilters({ ...filters, [e.target.name]: Number(e.target.value) });
+    startTransition(() =>
+      setFilters({ ...filters, [e.target.name]: Number(e.target.value) })
+    );
   };
-
-  const debouncedNumberHandler = useDebouncedCallback(handleNumberChange, 500);
 
   const renderCheckboxes = (filterBy: FilterBy, filter: Transfers | Carriers) => {
     if (!flights) {
@@ -118,7 +119,7 @@ const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
               name="priceFrom"
               id="priceFrom"
               defaultValue={filters.priceFrom}
-              onChange={debouncedNumberHandler}
+              onChange={handleNumberChange}
             />
           </div>
 
@@ -132,7 +133,7 @@ const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
               name="priceTo"
               id="priceTo"
               defaultValue={filters.priceTo}
-              onChange={debouncedNumberHandler}
+              onChange={handleNumberChange}
             />
           </div>
         </div>
