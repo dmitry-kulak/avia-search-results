@@ -17,10 +17,10 @@ type SearchFilterProps = {
 const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
   const [, startTransition] = useTransition();
   const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const inputValues: any = e.target.value.split(", ");
-    const sortDetails: SortBy = { value: inputValues[0], dir: inputValues[1] };
+    const value = e.target.value as SortByValue;
+    const dir = e.target.getAttribute("data-dir") as SortByDir;
 
-    setFilters({ ...filters, sortBy: sortDetails });
+    setFilters({ ...filters, sortBy: { value, dir } });
   };
 
   const handleNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -60,8 +60,9 @@ const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
             <input
               type="radio"
               name="sortBy"
-              value="price, ASC"
+              value="price"
               id="price, ASC"
+              data-dir="ASC"
               onChange={handleRadioChange}
               className={styles.radioInput}
               checked={filters.sortBy.value === "price" && filters.sortBy.dir === "ASC"}
@@ -75,8 +76,9 @@ const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
             <input
               type="radio"
               name="sortBy"
-              value="price, DESC"
+              value="price"
               id="price, DESC"
+              data-dir="DESC"
               onChange={handleRadioChange}
               className={styles.radioInput}
               checked={filters.sortBy.value === "price" && filters.sortBy.dir === "DESC"}
@@ -90,8 +92,9 @@ const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
             <input
               type="radio"
               name="sortBy"
-              value="time, ASC"
+              value="time"
               id="time, ASC"
+              data-dir="ASC"
               onChange={handleRadioChange}
               className={styles.radioInput}
               checked={filters.sortBy.value === "time" && filters.sortBy.dir === "ASC"}
