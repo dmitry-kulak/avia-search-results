@@ -1,7 +1,7 @@
 import { useDebouncedCallback } from "use-debounce";
 
 import type { Carriers, FilterBy, Filters, SortBy, Transfers } from "../../types/filters";
-import type { Dispatch, SetStateAction } from "react";
+import type { ChangeEvent, Dispatch, SetStateAction } from "react";
 import type { FlightResult } from "../../types/flights";
 
 import styles from "./SearchFilter.module.scss";
@@ -15,14 +15,14 @@ type SearchFilterProps = {
 };
 
 const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
-  const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValues: any = e.target.value.split(", ");
     const sortDetails: SortBy = { value: inputValues[0], dir: inputValues[1] };
 
     setFilters({ ...filters, sortBy: sortDetails });
   };
 
-  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFilters({ ...filters, [e.target.name]: Number(e.target.value) });
   };
 
