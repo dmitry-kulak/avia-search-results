@@ -1,26 +1,22 @@
-import { useTransition } from "react";
+import { useContext, useTransition } from "react";
+import { observer } from "mobx-react-lite";
 
 import type {
   Carriers,
   FilterBy,
-  Filters,
   SortByDir,
   SortByValue,
   Transfers,
 } from "../../types/filters";
-import type { ChangeEvent, Dispatch, SetStateAction } from "react";
+import type { ChangeEvent } from "react";
 
 import styles from "./SearchFilter.module.scss";
 import CheckboxField from "./CheckboxField";
 import Spinner from "../Spinner/Spinner";
+import { AppContext } from "../../index";
 
-type SearchFilterProps = {
-  filters: Filters;
-  setFilters: Dispatch<SetStateAction<Filters>>;
-  isFlightsLoaded: boolean;
-};
-
-const SearchFilter = ({ filters, setFilters, isFlightsLoaded }: SearchFilterProps) => {
+const SearchFilter = observer(() => {
+  const { setFilters, filters, isFlightsLoading } = useContext(AppContext);
   const [, startTransition] = useTransition();
   const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value as SortByValue;
@@ -36,18 +32,12 @@ const SearchFilter = ({ filters, setFilters, isFlightsLoaded }: SearchFilterProp
   };
 
   const renderCheckboxes = (filterBy: FilterBy, filter: Transfers | Carriers) => {
-    if (!isFlightsLoaded) {
+    if (isFlightsLoading) {
       return <Spinner />;
     }
 
     return Object.entries(filter).map((property) => (
-      <CheckboxField
-        filterBy={filterBy}
-        filter={property[0]}
-        filters={filters}
-        setFilters={setFilters}
-        key={property[0]}
-      />
+      <CheckboxField filterBy={filterBy} filter={property[0]} key={property[0]} />
     ));
   };
 
@@ -148,6 +138,6 @@ const SearchFilter = ({ filters, setFilters, isFlightsLoaded }: SearchFilterProp
       </form>
     </div>
   );
-};
+});
 
 export default SearchFilter;

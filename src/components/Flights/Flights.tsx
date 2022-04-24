@@ -1,23 +1,22 @@
+import { useContext } from "react";
+import { observer } from "mobx-react-lite";
 import { v4 as uuid } from "uuid";
 
 import type { FlightResult } from "../../types/flights";
-import type { Dispatch, SetStateAction } from "react";
 
 import styles from "./Flights.module.scss";
 import Flight from "../Flight/Flight";
 import Spinner from "../Spinner/Spinner";
+import { AppContext } from "../../index";
 
-type FlightsProps = {
-  flights: FlightResult[];
-  numberOfFlightsToShow: number;
-  setNumberOfFlightsToShow: Dispatch<SetStateAction<number>>;
-};
+const Flights = observer(() => {
+  const {
+    isFlightsLoading,
+    filteredFlights,
+    numberOfFlightsToShow,
+    setNumberOfFlightsToShow,
+  } = useContext(AppContext);
 
-const Flights = ({
-  flights,
-  numberOfFlightsToShow,
-  setNumberOfFlightsToShow,
-}: FlightsProps) => {
   const renderFlights = (flights: FlightResult[]) => {
     return flights
       .map((currFlight) => {
@@ -54,11 +53,11 @@ const Flights = ({
 
   return (
     <div className={styles.container}>
-      {flights.length === 0 ? <Spinner /> : renderFlights(flights)}
+      {isFlightsLoading ? <Spinner /> : renderFlights(filteredFlights)}
 
-      {renderShowMoreButton(flights)}
+      {renderShowMoreButton(filteredFlights)}
     </div>
   );
-};
+});
 
 export default Flights;

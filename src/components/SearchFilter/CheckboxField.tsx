@@ -1,17 +1,19 @@
-import type { Dispatch, SetStateAction } from "react";
-import type { FilterBy, Filters } from "../../types/filters";
+import { useContext } from "react";
+import { observer } from "mobx-react-lite";
+
+import type { FilterBy } from "../../types/filters";
 
 import styles from "./SearchFilter.module.scss";
 import { renderTransferName } from "../../utils/utils";
+import { AppContext } from "../../index";
 
 type CheckboxFieldProps = {
   filterBy: FilterBy;
   filter: string;
-  filters: Filters;
-  setFilters: Dispatch<SetStateAction<Filters>>;
 };
 
-const CheckboxField = ({ filterBy, filter, filters, setFilters }: CheckboxFieldProps) => {
+const CheckboxField = observer(({ filterBy, filter }: CheckboxFieldProps) => {
+  const { filters, setFilters } = useContext(AppContext);
   const renderLabel = (filterBy: FilterBy, filter: string) => {
     if (filterBy === "transfers") {
       return renderTransferName(filter);
@@ -47,6 +49,6 @@ const CheckboxField = ({ filterBy, filter, filters, setFilters }: CheckboxFieldP
       </label>
     </div>
   );
-};
+});
 
 export default CheckboxField;
