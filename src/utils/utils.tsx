@@ -1,3 +1,5 @@
+import { always, cond, equals, gte, lte, T } from "ramda";
+
 export const convertTime = (time: string | number) => {
   // конвертирует минуты в час/мин
   if (typeof time === "string") {
@@ -16,26 +18,13 @@ export const showTimeTotal = (time: string | number) => {
   return `${hours ? `${hours} ч ` : null}${minutes} мин`;
 };
 
-export const renderTransferName = (transfer: number | string) => {
-  if (typeof transfer === "string") {
-    transfer = parseInt(transfer);
-  }
-
-  if (transfer === 0) {
-    return "Без пересадок";
-  }
-
-  if (transfer === 1) {
-    return "1 пересадка";
-  }
-
-  if (transfer >= 2 && transfer <= 4) {
-    return `${transfer} пересадки`;
-  }
-
-  if (transfer >= 5) {
-    return `${transfer} пересадок`;
-  }
+export const renderTransferName = (transfer: string) => {
+  return cond([
+    [equals(0), always("Без пересадок")],
+    [equals(1), always("1 пересадка")],
+    [gte(2) && lte(4), always(`${transfer} пересадки`)],
+    [T, always(`${transfer} пересадки`)],
+  ])(parseInt(transfer));
 };
 
 export const convertDateToTime = (date: string) => {
