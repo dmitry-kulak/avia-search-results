@@ -1,4 +1,4 @@
-import type { LegInterface } from "../../types/flights";
+import type { LegType } from "../../types/flights";
 
 import styles from "./Leg.module.scss";
 import {
@@ -8,7 +8,7 @@ import {
   formatDate,
 } from "../../utils/utils";
 
-type LegProps = { leg: LegInterface };
+type LegProps = { leg: LegType };
 
 // leg is the last segment of flight
 const Leg = ({ leg }: LegProps) => {

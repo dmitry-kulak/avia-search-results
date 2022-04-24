@@ -1,13 +1,13 @@
-export interface GenericField {
+export type GenericField = {
   caption: string;
   uid: string;
-}
+};
 
-export interface GenericPriceField {
+export type GenericPriceField = {
   amount: string;
   currency: Currencies;
   currencyCode: CurrencyCodes;
-}
+};
 
 // TODO добавить остальные валюты
 export type Currencies = "руб.";

@@ -5,63 +5,63 @@ import type {
   TariffNames,
 } from "./commonTypes";
 
-export interface FlightResult {
+export type FlightResult = {
   flightToken: string;
   hasExtenderFare: boolean;
   flight: Flight;
-}
+};
 
-export interface FlightResultFetched {
+export type FlightResultFetched = {
   result: { flights: FlightResult[] };
-}
+};
 
-export interface Flight {
+export type Flight = {
   carrier: Carrier;
   exchange: GenericPriceField;
   international: boolean;
   isTripartiteContractDiscountApplied: boolean;
-  legs: LegInterface[];
+  legs: LegType[];
   price: Price;
   refund: Refund;
   seats: Seats;
   servicesStatuses: ServicesStatuses;
-}
+};
 
-export interface Carrier extends GenericField {
+export type Carrier = GenericField & {
   airlineCode: string;
-}
+};
 
-export interface LegInterface {
+export type LegType = {
   duration: number;
   segments: Segment[];
-}
+};
 
-export interface Price {
+export type Price = {
   passengerPrices: PassengerPrice[];
   rates: { totalEur: Rate; totalUsd: Rate };
   total: GenericPriceField;
   totalFeeAndTaxes: GenericPriceField;
-}
+};
 
-export interface Refund {
+export type Refund = {
   ADULT: {
     refundableAfterDeparture: boolean;
     refundableBeforeDeparture: boolean;
   };
-}
+};
 
-export interface Seats {
+export type Seats = {
   count: number;
   type: GenericField;
-}
+};
 
-export interface ServicesStatuses {
+export type ServicesStatuses = {
   baggage: GenericField;
   exchange: GenericField;
   refund: GenericField;
-}
+};
 
-export interface Segment {
+export type Segment = {
   aircraft: GenericField;
   airline: Airline;
   arrivalAirport: GenericField;
@@ -78,30 +78,30 @@ export interface Segment {
   stops: number;
   techStopInfos: [];
   travelDuration: number;
-}
+};
 
-export interface Airline extends GenericField {
+export type Airline = GenericField & {
   airlineCode: string;
-}
+};
 
-export interface ServiceDetails {
+export type ServiceDetails = {
   fareBasis: { ADULT: string };
   freeCabinLuggage: Record<string, never>;
   freeLuggage: { ADULT: { nil: boolean; pieces: number; unit: "шт" } };
   paidCabinLuggage: Record<string, never>;
   paidLuggage: Record<string, never>;
   tariffName: TariffNames;
-}
+};
 
-export interface PassengerPrice {
+export type PassengerPrice = {
   feeAndTaxes: GenericPriceField;
   passengerCount: number;
   passengerType: GenericField;
   tariff: GenericPriceField;
   total: GenericPriceField;
-}
+};
 
-export interface Rate {
+export type Rate = {
   amount: string;
   currencyCode: CurrencyCodes;
-}
+};

@@ -1,15 +1,15 @@
-export interface Filters {
+export type Filters = {
   sortBy: SortBy;
   transfers: Transfers;
   priceFrom: number;
   priceTo: number;
   carriers: Carriers;
-}
+};
 
-export interface SortBy {
+export type SortBy = {
   value: SortByValue;
   dir: SortByDir;
-}
+};
 
 export type SortByValue = "price" | "time";
 export type SortByDir = "ASC" | "DESC";
