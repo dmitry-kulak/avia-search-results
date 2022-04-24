@@ -72,7 +72,11 @@ const App = () => {
 
   return (
     <div className={styles.app}>
-      <SearchFilter filters={filters} flights={filteredFlights} setFilters={setFilters} />
+      <SearchFilter
+        filters={filters}
+        isFlightsLoaded={!!filteredFlights.length}
+        setFilters={setFilters}
+      />
       <Flights
         flights={filteredFlights}
         numberOfFlightsToShow={numberOfFlightsToShow}

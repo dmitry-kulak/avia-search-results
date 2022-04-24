@@ -9,7 +9,6 @@ import type {
   Transfers,
 } from "../../types/filters";
 import type { ChangeEvent, Dispatch, SetStateAction } from "react";
-import type { FlightResult } from "../../types/flights";
 
 import styles from "./SearchFilter.module.scss";
 import CheckboxField from "./CheckboxField";
@@ -18,10 +17,10 @@ import Spinner from "../Spinner/Spinner";
 type SearchFilterProps = {
   filters: Filters;
   setFilters: Dispatch<SetStateAction<Filters>>;
-  flights: FlightResult[];
+  isFlightsLoaded: boolean;
 };
 
-const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
+const SearchFilter = ({ filters, setFilters, isFlightsLoaded }: SearchFilterProps) => {
   const [, startTransition] = useTransition();
   const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value as SortByValue;
@@ -37,7 +36,7 @@ const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
   };
 
   const renderCheckboxes = (filterBy: FilterBy, filter: Transfers | Carriers) => {
-    if (!flights) {
+    if (!isFlightsLoaded) {
       return <Spinner />;
     }
 
