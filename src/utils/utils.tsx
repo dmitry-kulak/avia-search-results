@@ -1,21 +1,16 @@
 import { always, cond, equals, gte, lte, range, T } from "ramda";
 
-export const convertTime = (time: string | number) => {
-  // конвертирует минуты в час/мин
-  if (typeof time === "string") {
-    time = Number(time);
-  }
+export const convertTime = (minutes: number) => {
+  const hrs = Math.floor(minutes / 60);
+  const min = minutes - hrs * 60;
 
-  const hours = Math.floor(time / 60);
-  const minutes = time - hours * 60;
-
-  return [hours, minutes];
+  return [hrs, min];
 };
 
-export const showTimeTotal = (time: string | number) => {
+export const showTimeTotal = (time: number) => {
   const [hours, minutes] = convertTime(time);
 
-  return `${hours ? `${hours} ч ` : null}${minutes} мин`;
+  return `${hours ? `${hours} ч ` : ""}${minutes} мин`;
 };
 
 export const renderTransferName = (transfer: string | number) => {
