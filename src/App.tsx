@@ -44,7 +44,7 @@ const App = () => {
           carriersFilter[carrier] = false;
         });
 
-        const transfers = makeTransferFields(0, countTransfers(flights));
+        const transfers = makeTransferFields(countTransfers(flights));
         const transfersFilter: { [key: string]: boolean } = {};
         transfers.forEach((carrier) => {
           transfersFilter[carrier] = false;

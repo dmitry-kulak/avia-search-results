@@ -1,4 +1,4 @@
-import { always, cond, equals, gte, lte, T } from "ramda";
+import { always, cond, equals, gte, lte, range, T } from "ramda";
 
 export const convertTime = (time: string | number) => {
   // конвертирует минуты в час/мин
@@ -62,11 +62,6 @@ export const months = [
   "дек.",
 ];
 
-export const makeTransferFields = (start: number, end: number) => {
-  let fields = [];
-  for (let i = end; i >= start; i--) {
-    fields.push(`${i}-transfers`);
-  }
-
-  return fields;
+export const makeTransferFields = (end: number) => {
+  return range(0, end + 1).map((i) => `${i}-transfers`);
 };
