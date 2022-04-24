@@ -1,6 +1,6 @@
-import { curry, pipe } from "ramda";
+import { curry, pipe, sort } from "ramda";
 
-import type { Filters, SortByDir, SortByValue } from "../types/filters";
+import type { Filters, SortByDir } from "../types/filters";
 import type { FlightResult } from "../types/flights";
 
 export const findCarriers = (flights: FlightResult[]) => {
@@ -25,68 +25,50 @@ export const countTransfers = (flights: FlightResult[]) => {
   return transfers;
 };
 
-export const sortByPrice = (flights: FlightResult[], dir: SortByDir) => {
-  const sortByPriceAsc = (flights: FlightResult[]) => {
-    return [...flights].sort((a, b) => {
-      return +a.flight.price.total.amount - +b.flight.price.total.amount;
-    });
-  };
-
-  const sortByPriceDesc = (flights: FlightResult[]) => {
-    return [...flights].sort((a, b) => {
-      return +b.flight.price.total.amount - +a.flight.price.total.amount;
-    });
-  };
-
+export const sortByPrice = (dir: SortByDir, flights: FlightResult[]) => {
   switch (dir) {
     case "ASC":
-      return sortByPriceAsc(flights);
-
+      return sort(
+        (a, b) => +a.flight.price.total.amount - +b.flight.price.total.amount,
+        flights
+      );
     case "DESC":
-      return sortByPriceDesc(flights);
+      return sort(
+        (a, b) => +b.flight.price.total.amount - +a.flight.price.total.amount,
+        flights
+      );
   }
 };
 
-export const sortByTime = (flights: FlightResult[], dir: SortByDir) => {
-  const sortByTimeAsc = (flights: FlightResult[]) => {
-    return [...flights].sort((a, b) => {
-      return (
-        +a.flight.legs[0].duration +
-        +a.flight.legs[1].duration -
-        (+b.flight.legs[0].duration + +b.flight.legs[1].duration)
-      );
-    });
-  };
-
-  const sortByTimeDesc = (flights: FlightResult[]) => {
-    return [...flights].sort((a, b) => {
-      return (
-        +b.flight.legs[0].duration +
-        +b.flight.legs[1].duration -
-        (+a.flight.legs[0].duration + +a.flight.legs[1].duration)
-      );
-    });
-  };
-
+export const sortByTime = (dir: SortByDir, flights: FlightResult[]) => {
   switch (dir) {
     case "ASC":
-      return sortByTimeAsc(flights);
-
+      return sort(
+        (a, b) =>
+          +a.flight.legs[0].duration +
+          +a.flight.legs[1].duration -
+          (+b.flight.legs[0].duration + +b.flight.legs[1].duration),
+        flights
+      );
     case "DESC":
-      return sortByTimeDesc(flights);
+      return sort(
+        (a, b) =>
+          +b.flight.legs[0].duration +
+          +b.flight.legs[1].duration -
+          (+a.flight.legs[0].duration + +a.flight.legs[1].duration),
+        flights
+      );
   }
 };
 
-export const sortFlights = (
-  flights: FlightResult[],
-  { value, dir }: { value: SortByValue; dir: SortByDir }
-) => {
+export const sortFlights = (flights: FlightResult[], filters: Filters) => {
+  const { value, dir } = filters.sortBy;
   switch (value) {
     case "price":
-      return sortByPrice(flights, dir);
+      return sortByPrice(dir, flights);
 
     case "time":
-      return sortByTime(flights, dir);
+      return sortByTime(dir, flights);
   }
 };
 

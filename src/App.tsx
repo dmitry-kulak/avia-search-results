@@ -65,7 +65,7 @@ const App = () => {
   }, [filters]);
 
   const filterFlights = (flights: FlightResult[], filters: Filters) => {
-    return sortFlights(filterFlightsByAll(filters)(flights), filters.sortBy);
+    return sortFlights(filterFlightsByAll(filters)(flights), filters);
   };
 
   const filteredFlights = filterFlights(flights, filters);
