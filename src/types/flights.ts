@@ -11,6 +11,10 @@ export interface FlightResult {
   flight: Flight;
 }
 
+export interface FlightResultFetched {
+  result: { flights: FlightResult[] };
+}
+
 export interface Flight {
   carrier: Carrier;
   exchange: GenericPriceField;

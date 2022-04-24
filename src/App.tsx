@@ -1,17 +1,15 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 import type { Filters } from "./types/filters";
-import type { FlightResult } from "./types/flights";
-
+import type { FlightResult, FlightResultFetched } from "./types/flights";
 import styles from "./App.module.scss";
 import Flights from "./components/Flights/Flights";
 import SearchFilter from "./components/SearchFilter/SearchFilter";
 import { makeTransferFields } from "./utils/utils";
 import {
   countTransfers,
-  filterByCarriers,
-  filterByPrice,
-  filterByTransfers,
+  filterFlightsByAll,
   findCarriers,
   sortFlights,
 } from "./utils/filterFunctions";
@@ -28,69 +26,53 @@ const initialFilters: Filters = {
 };
 
 const App = () => {
-  const [flights, setFlights] = useState<FlightResult[] | null>(null);
-  const [filteredFlights, setFilteredFlights] = useState<FlightResult[] | null>(null);
+  const [flights, setFlights] = useState<FlightResult[]>([]);
   const [filters, setFilters] = useState<Filters>(initialFilters);
   const [numberOfFlightsToShow, setNumberOfFlightsToShow] = useState(5);
 
   useEffect(() => {
     const fetchFlights = async () => {
-      const response = await fetch("./flights.min.json");
-      const data = await response.json();
-      setFlights(data.result.flights);
+      const response = await axios.get<FlightResultFetched>("./flights.min.json");
+      return response.data.result.flights;
     };
 
-    fetchFlights();
+    fetchFlights()
+      .then((flights) => {
+        const carriers = findCarriers(flights);
+        const carriersFilter: { [key: string]: boolean } = {};
+        carriers.forEach((carrier) => {
+          carriersFilter[carrier] = false;
+        });
+
+        const transfers = makeTransferFields(0, countTransfers(flights));
+        const transfersFilter: { [key: string]: boolean } = {};
+        transfers.forEach((carrier) => {
+          transfersFilter[carrier] = false;
+        });
+
+        setFlights(flights);
+        setFilters({
+          ...filters,
+          carriers: carriersFilter,
+          transfers: transfersFilter,
+        });
+      })
+      .catch((err) => console.log(err));
   }, []);
 
-  // SET TRANSFERS AND CARRIERS FILTERS ON FETCH
   useEffect(() => {
-    if (flights) {
-      setFilteredFlights(flights);
+    setNumberOfFlightsToShow(5);
+  }, [filters]);
 
-      const carriers = findCarriers(flights);
-      const carriersFilter: { [key: string]: boolean } = {};
-      carriers.forEach((carrier) => {
-        carriersFilter[carrier] = false;
-      });
+  const filterFlights = (flights: FlightResult[], filters: Filters) => {
+    return sortFlights(filterFlightsByAll(flights, filters), filters.sortBy);
+  };
 
-      const transfers = makeTransferFields(0, countTransfers(flights));
-      const transfersFilter: { [key: string]: boolean } = {};
-      transfers.forEach((carrier) => {
-        transfersFilter[carrier] = false;
-      });
-
-      setFilters({
-        ...filters,
-        carriers: carriersFilter,
-        transfers: transfersFilter,
-      });
-    }
-  }, [flights]);
-
-  // FILTER FLIGHTS
-  useEffect(() => {
-    if (flights) {
-      setNumberOfFlightsToShow(5);
-
-      let newFilteredFlights: FlightResult[] = flights.slice();
-
-      newFilteredFlights = filterByTransfers(newFilteredFlights, filters.transfers);
-      newFilteredFlights = filterByCarriers(newFilteredFlights, filters.carriers);
-      newFilteredFlights = filterByPrice(
-        newFilteredFlights,
-        filters.priceFrom,
-        filters.priceTo
-      );
-      newFilteredFlights = sortFlights(newFilteredFlights, filters.sortBy);
-
-      setFilteredFlights(newFilteredFlights);
-    }
-  }, [filters, flights]);
+  const filteredFlights = filterFlights(flights, filters);
 
   return (
     <div className={styles.app}>
-      <SearchFilter filters={filters} setFilters={setFilters} flights={filteredFlights} />
+      <SearchFilter filters={filters} flights={filteredFlights} setFilters={setFilters} />
       <Flights
         flights={filteredFlights}
         numberOfFlightsToShow={numberOfFlightsToShow}

@@ -1,4 +1,10 @@
-import type { Carriers, SortByDir, SortByValue, Transfers } from "../types/filters";
+import type {
+  Carriers,
+  Filters,
+  SortByDir,
+  SortByValue,
+  Transfers,
+} from "../types/filters";
 import type { FlightResult } from "../types/flights";
 
 export const findCarriers = (flights: FlightResult[]) => {
@@ -151,5 +157,17 @@ export const filterByPrice = (flights: FlightResult[], min: number, max: number)
   return flights.filter(
     (flight) =>
       +flight.flight.price.total.amount >= min && +flight.flight.price.total.amount <= max
+  );
+};
+
+// TODO learn functional programming and rewrite it
+export const filterFlightsByAll = (flights: FlightResult[], filters: Filters) => {
+  return filterByCarriers(
+    filterByPrice(
+      filterByTransfers(flights, filters.transfers),
+      filters.priceFrom,
+      filters.priceTo
+    ),
+    filters.carriers
   );
 };
