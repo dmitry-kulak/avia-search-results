@@ -1,10 +1,6 @@
-import type {
-  Carriers,
-  Filters,
-  SortByDir,
-  SortByValue,
-  Transfers,
-} from "../types/filters";
+import { curry, pipe } from "ramda";
+
+import type { Filters, SortByDir, SortByValue } from "../types/filters";
 import type { FlightResult } from "../types/flights";
 
 export const findCarriers = (flights: FlightResult[]) => {
@@ -94,7 +90,8 @@ export const sortFlights = (
   }
 };
 
-export const filterByTransfers = (flights: FlightResult[], transfers: Transfers) => {
+export const filterByTransfers = curry((filters: Filters, flights: FlightResult[]) => {
+  const { transfers } = filters;
   let filteredFlights: FlightResult[] = [...flights];
   const activeTransfersFilters: number[] = [];
 
@@ -128,9 +125,10 @@ export const filterByTransfers = (flights: FlightResult[], transfers: Transfers)
   });
 
   return filteredFlights;
-};
+});
 
-export const filterByCarriers = (flights: FlightResult[], carriers: Carriers) => {
+export const filterByCarriers = curry((filters: Filters, flights: FlightResult[]) => {
+  const { carriers } = filters;
   let filteredFlights: FlightResult[] = [...flights];
   const activeFilters: string[] = [];
 
@@ -151,23 +149,19 @@ export const filterByCarriers = (flights: FlightResult[], carriers: Carriers) =>
   });
 
   return filteredFlights;
-};
+});
 
-export const filterByPrice = (flights: FlightResult[], min: number, max: number) => {
+export const filterByPrice = curry((filters: Filters, flights: FlightResult[]) => {
+  const { priceFrom: min, priceTo: max } = filters;
   return flights.filter(
     (flight) =>
       +flight.flight.price.total.amount >= min && +flight.flight.price.total.amount <= max
   );
-};
+});
 
-// TODO learn functional programming and rewrite it
-export const filterFlightsByAll = (flights: FlightResult[], filters: Filters) => {
-  return filterByCarriers(
-    filterByPrice(
-      filterByTransfers(flights, filters.transfers),
-      filters.priceFrom,
-      filters.priceTo
-    ),
-    filters.carriers
-  );
-};
+// TODO revisit when sober
+type FilterFlightsByAll = (
+  filters: Filters
+) => (flights: FlightResult[]) => FlightResult[];
+export const filterFlightsByAll: FilterFlightsByAll = (filters) =>
+  pipe(filterByCarriers(filters), filterByPrice(filters), filterByTransfers(filters));
