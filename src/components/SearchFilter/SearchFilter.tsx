@@ -1,6 +1,13 @@
 import { useTransition } from "react";
 
-import type { Carriers, FilterBy, Filters, SortBy, Transfers } from "../../types/filters";
+import type {
+  Carriers,
+  FilterBy,
+  Filters,
+  SortByDir,
+  SortByValue,
+  Transfers,
+} from "../../types/filters";
 import type { ChangeEvent, Dispatch, SetStateAction } from "react";
 import type { FlightResult } from "../../types/flights";
 
@@ -11,7 +18,7 @@ import Spinner from "../Spinner/Spinner";
 type SearchFilterProps = {
   filters: Filters;
   setFilters: Dispatch<SetStateAction<Filters>>;
-  flights: FlightResult[] | null;
+  flights: FlightResult[];
 };
 
 const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
@@ -34,21 +41,15 @@ const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
       return <Spinner />;
     }
 
-    const rendered = [];
-
-    for (const property in filter) {
-      rendered.push(
-        <CheckboxField
-          filterBy={filterBy}
-          filter={property}
-          filters={filters}
-          setFilters={setFilters}
-          key={property}
-        />
-      );
-    }
-
-    return rendered;
+    return Object.entries(filter).map((property) => (
+      <CheckboxField
+        filterBy={filterBy}
+        filter={property[0]}
+        filters={filters}
+        setFilters={setFilters}
+        key={property[0]}
+      />
+    ));
   };
 
   return (
