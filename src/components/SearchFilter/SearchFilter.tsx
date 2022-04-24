@@ -35,7 +35,7 @@ const SearchFilter = ({ filters, setFilters, flights }: SearchFilterProps) => {
 
     const rendered = [];
 
-    for (let property in filter) {
+    for (const property in filter) {
       rendered.push(
         <CheckboxField
           filterBy={filterBy}

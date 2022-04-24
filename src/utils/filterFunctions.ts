@@ -8,8 +8,8 @@ import type {
 import type { FlightResult } from "../types/flights";
 
 export const findCarriers = (flights: FlightResult[]) => {
-  let carriers = new Set();
-  for (let flight of flights) {
+  const carriers = new Set();
+  for (const flight of flights) {
     carriers.add(flight.flight.carrier.caption);
   }
 
@@ -18,8 +18,8 @@ export const findCarriers = (flights: FlightResult[]) => {
 
 export const countTransfers = (flights: FlightResult[]) => {
   let transfers = 0;
-  for (let flight of flights) {
-    for (let leg of flight.flight.legs) {
+  for (const flight of flights) {
+    for (const leg of flight.flight.legs) {
       if (leg.segments.length - 1 > transfers) {
         transfers = leg.segments.length - 1;
       }
@@ -98,7 +98,7 @@ export const filterByTransfers = (flights: FlightResult[], transfers: Transfers)
   let filteredFlights: FlightResult[] = [...flights];
   const activeTransfersFilters: number[] = [];
 
-  for (let transfer in transfers) {
+  for (const transfer in transfers) {
     if (transfers[transfer]) {
       activeTransfersFilters.push(parseInt(transfer));
     }
@@ -117,7 +117,7 @@ export const filterByTransfers = (flights: FlightResult[], transfers: Transfers)
 
   activeTransfersFilters.forEach(() => {
     filteredFlights = filteredFlights.filter((flight) => {
-      for (let leg of flight.flight.legs) {
+      for (const leg of flight.flight.legs) {
         if (activeTransfersFilters.includes(leg.segments.length - 1)) {
           return true;
         }
@@ -134,7 +134,7 @@ export const filterByCarriers = (flights: FlightResult[], carriers: Carriers) =>
   let filteredFlights: FlightResult[] = [...flights];
   const activeFilters: string[] = [];
 
-  for (let carrier in carriers) {
+  for (const carrier in carriers) {
     if (carriers[carrier]) {
       activeFilters.push(carrier);
     }
