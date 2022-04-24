@@ -1,4 +1,4 @@
-import { always, cond, equals, gte, lte, range, T } from "ramda";
+import { always, cond, equals, gt, gte, lte, range, T, unless } from "ramda";
 
 export const convertTime = (minutes: number) => {
   const hrs = Math.floor(minutes / 60);
@@ -25,9 +25,7 @@ export const renderTransferName = (transfer: string | number) => {
 export const convertDateToTime = (date: string) => {
   const dateObj = new Date(date);
 
-  const addPad = (num: number) => {
-    return num < 10 ? String(num).padStart(2, "0") : num;
-  };
+  const addPad = unless(gt(10), (num) => num.toString().padStart(2, "0"));
 
   return `${addPad(dateObj.getHours())}:${addPad(dateObj.getMinutes())}`;
 };
