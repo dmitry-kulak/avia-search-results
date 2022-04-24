@@ -86,10 +86,10 @@ export interface Airline extends GenericField {
 
 export interface ServiceDetails {
   fareBasis: { ADULT: string };
-  freeCabinLuggage: {};
+  freeCabinLuggage: Record<string, never>;
   freeLuggage: { ADULT: { nil: boolean; pieces: number; unit: "шт" } };
-  paidCabinLuggage: {};
-  paidLuggage: {};
+  paidCabinLuggage: Record<string, never>;
+  paidLuggage: Record<string, never>;
   tariffName: TariffNames;
 }
 
