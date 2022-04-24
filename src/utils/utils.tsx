@@ -33,29 +33,28 @@ export const convertDateToTime = (date: string) => {
 };
 
 export const formatDate = (date: string) => {
+  const daysOfWeek = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
+
+  const months = [
+    "янв.",
+    "фел.",
+    "мар.",
+    "апр.",
+    "май",
+    "июн.",
+    "июл.",
+    "авг.",
+    "сен.",
+    "окт.",
+    "ноя.",
+    "дек.",
+  ];
   const dateObj = new Date(date);
 
   return `${dateObj.getDate()} ${months[dateObj.getMonth()]} ${
     daysOfWeek[dateObj.getDay()]
   }`;
 };
-
-export const daysOfWeek = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
-
-export const months = [
-  "янв.",
-  "фел.",
-  "мар.",
-  "апр.",
-  "май",
-  "июн.",
-  "июл.",
-  "авг.",
-  "сен.",
-  "окт.",
-  "ноя.",
-  "дек.",
-];
 
 export const makeTransferFields = (end: number) => {
   return range(0, end + 1).map((i) => `${i}-transfers`);
