@@ -18,13 +18,13 @@ export const showTimeTotal = (time: string | number) => {
   return `${hours ? `${hours} ч ` : null}${minutes} мин`;
 };
 
-export const renderTransferName = (transfer: string) => {
+export const renderTransferName = (transfer: string | number) => {
   return cond([
     [equals(0), always("Без пересадок")],
     [equals(1), always("1 пересадка")],
     [gte(2) && lte(4), always(`${transfer} пересадки`)],
     [T, always(`${transfer} пересадки`)],
-  ])(parseInt(transfer));
+  ])(parseInt(transfer.toString()));
 };
 
 export const convertDateToTime = (date: string) => {
