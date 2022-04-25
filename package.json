@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.26.1",
+    "eslint-plugin-mobx": "^0.0.8",
     "mobx": "^6.5.0",
     "mobx-react-lite": "^3.3.0",
     "ramda": "^0.28.0",
