@@ -141,3 +141,5 @@ const SearchFilter = observer(() => {
 });
 
 export default SearchFilter;
+
+SearchFilter.displayName = "SearchFilter";

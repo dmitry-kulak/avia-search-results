@@ -61,3 +61,5 @@ const Flights = observer(() => {
 });
 
 export default Flights;
+
+Flights.displayName = "Flights";

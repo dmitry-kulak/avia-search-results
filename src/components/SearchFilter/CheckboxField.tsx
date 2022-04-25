@@ -52,3 +52,5 @@ const CheckboxField = observer(({ filterBy, filter }: CheckboxFieldProps) => {
 });
 
 export default CheckboxField;
+
+CheckboxField.displayName = "CheckboxField";
