@@ -839,6 +839,7 @@ __metadata:
     eslint-plugin-jsx-a11y: ^6.5.1
     eslint-plugin-mobx: ^0.0.8
     eslint-plugin-prettier: ^4.0.0
+    eslint-plugin-ramda: ^2.5.1
     eslint-plugin-react: ^7.29.4
     mobx: ^6.5.0
     mobx-react: ^7.3.0
@@ -1105,6 +1106,15 @@ __metadata:
   version: 3.22.2
   resolution: "core-js-pure@npm:3.22.2"
   checksum: d0618aa2f45182fbce5feb6b436c72a71e1d2a739ec7546be453460fc9938d30235da4506ea128a22780ca00b84f4f5528da8019719a2fba16da6f44999d3bff
+  languageName: node
+  linkType: hard
+
+"create-eslint-index@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "create-eslint-index@npm:1.0.0"
+  dependencies:
+    lodash.get: ^4.3.0
+  checksum: 34c859910c6873381e795f22352522c23755856ce444e95eec5bf09b640cab50ff8bbc241c61fc0362f42bb713a85ef7aeaa49d0d73d0560bf43f0a0c20b54d6
   languageName: node
   linkType: hard
 
@@ -1581,6 +1591,17 @@ __metadata:
     eslint-config-prettier:
       optional: true
   checksum: 03d69177a3c21fa2229c7e427ce604429f0b20ab7f411e2e824912f572a207c7f5a41fd1f0a95b9b8afe121e291c1b1f1dc1d44c7aad4b0837487f9c19f5210d
+  languageName: node
+  linkType: hard
+
+"eslint-plugin-ramda@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "eslint-plugin-ramda@npm:2.5.1"
+  dependencies:
+    create-eslint-index: ^1.0.0
+    ramda: 0.25.0
+    req-all: ^1.0.0
+  checksum: ec972dcd659e5cede5d5f4415d3a572d5bfd5a79b09e7a8475a8605a3bb320f5e78609914539a0ee4d424116802910b2e967e48e0e9fe5a7e18c8fdf14c96570
   languageName: node
   linkType: hard
 
@@ -2466,6 +2487,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.get@npm:^4.3.0":
+  version: 4.4.2
+  resolution: "lodash.get@npm:4.4.2"
+  checksum: e403047ddb03181c9d0e92df9556570e2b67e0f0a930fcbbbd779370972368f5568e914f913e93f3b08f6d492abc71e14d4e9b7a18916c31fa04bd2306efe545
+  languageName: node
+  linkType: hard
+
 "lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
@@ -3008,6 +3036,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ramda@npm:0.25.0":
+  version: 0.25.0
+  resolution: "ramda@npm:0.25.0"
+  checksum: 008abbcc69aefd89a2a4a0c9f4cf9f8da2ec490a0e1e261b4c88de8540ef0c383d469bfdf71b758b559377c71bfa8efea164fdb1779169359a86b46f7cb23cb1
+  languageName: node
+  linkType: hard
+
 "ramda@npm:^0.28.0":
   version: 0.28.0
   resolution: "ramda@npm:0.28.0"
@@ -3092,6 +3127,13 @@ __metadata:
   version: 3.2.0
   resolution: "regexpp@npm:3.2.0"
   checksum: a78dc5c7158ad9ddcfe01aa9144f46e192ddbfa7b263895a70a5c6c73edd9ce85faf7c0430e59ac38839e1734e275b9c3de5c57ee3ab6edc0e0b1bdebefccef8
+  languageName: node
+  linkType: hard
+
+"req-all@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "req-all@npm:1.0.0"
+  checksum: d883e504e4b7cb4257281f1db34fb58d9c0412293f3356512f693807c18313177d849da5238a3db29bd56ccf111a89e8a95c3f82bb29de1cf4386a55be8bfcd7
   languageName: node
   linkType: hard
 
