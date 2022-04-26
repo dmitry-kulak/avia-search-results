@@ -5,11 +5,11 @@ import { v4 as uuid } from "uuid";
 import type { FlightResult } from "../../types/flights";
 
 import styles from "./Flights.module.scss";
-import Flight from "../Flight/Flight";
-import Spinner from "../Spinner/Spinner";
+import { Flight } from "../Flight/Flight";
+import { Spinner } from "../Spinner/Spinner";
 import { AppContext } from "../../index";
 
-const Flights = observer(() => {
+export const Flights = observer(() => {
   const {
     isFlightsLoading,
     filteredFlights,
@@ -59,7 +59,5 @@ const Flights = observer(() => {
     </div>
   );
 });
-
-export default Flights;
 
 Flights.displayName = "Flights";

@@ -11,7 +11,7 @@ import {
 type LegProps = { leg: LegType };
 
 // leg is the last segment of flight
-const Leg = ({ leg }: LegProps) => {
+export const Leg = ({ leg }: LegProps) => {
   const segmentsTotal = leg.segments.length - 1;
 
   return (
@@ -64,5 +64,3 @@ const Leg = ({ leg }: LegProps) => {
     </article>
   );
 };
-
-export default Leg;

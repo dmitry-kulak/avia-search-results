@@ -1,7 +1,7 @@
 import type { LegType } from "../../types/flights";
 
 import styles from "./Flight.module.scss";
-import Leg from "../Leg/Leg";
+import { Leg } from "../Leg/Leg";
 
 type FlightProps = {
   carrier: string;
@@ -9,7 +9,7 @@ type FlightProps = {
   legs: LegType[];
 };
 
-const Flight = ({ carrier, legs, price }: FlightProps) => {
+export const Flight = ({ carrier, legs, price }: FlightProps) => {
   return (
     <div className={styles.card}>
       <header className={styles.header}>
@@ -33,5 +33,3 @@ const Flight = ({ carrier, legs, price }: FlightProps) => {
     </div>
   );
 };
-
-export default Flight;

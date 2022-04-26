@@ -12,7 +12,7 @@ type CheckboxFieldProps = {
   filter: string;
 };
 
-const CheckboxField = observer(({ filterBy, filter }: CheckboxFieldProps) => {
+export const CheckboxField = observer(({ filterBy, filter }: CheckboxFieldProps) => {
   const { filters, setFilters } = useContext(AppContext);
   const renderLabel = (filterBy: FilterBy, filter: string) => {
     if (filterBy === "transfers") {
@@ -50,7 +50,5 @@ const CheckboxField = observer(({ filterBy, filter }: CheckboxFieldProps) => {
     </div>
   );
 });
-
-export default CheckboxField;
 
 CheckboxField.displayName = "CheckboxField";
