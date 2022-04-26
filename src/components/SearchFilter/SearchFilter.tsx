@@ -11,11 +11,11 @@ import type {
 import type { ChangeEvent } from "react";
 
 import styles from "./SearchFilter.module.scss";
-import CheckboxField from "./CheckboxField";
-import Spinner from "../Spinner/Spinner";
+import { CheckboxField } from "./CheckboxField";
+import { Spinner } from "../Spinner/Spinner";
 import { AppContext } from "../../index";
 
-const SearchFilter = observer(() => {
+export const SearchFilter = observer(() => {
   const { setFilters, filters, isFlightsLoading } = useContext(AppContext);
   const [, startTransition] = useTransition();
   const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -139,7 +139,5 @@ const SearchFilter = observer(() => {
     </div>
   );
 });
-
-export default SearchFilter;
 
 SearchFilter.displayName = "SearchFilter";
