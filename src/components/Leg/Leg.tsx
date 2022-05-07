@@ -64,3 +64,5 @@ export const Leg = ({ leg }: LegProps) => {
     </article>
   );
 };
+
+Leg.displayName = "Leg";

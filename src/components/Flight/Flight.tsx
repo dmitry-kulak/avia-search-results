@@ -33,3 +33,5 @@ export const Flight = ({ carrier, legs, price }: FlightProps) => {
     </div>
   );
 };
+
+Flight.displayName = "Flight";
