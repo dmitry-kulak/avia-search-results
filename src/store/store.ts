@@ -12,7 +12,7 @@ import {
 import { makeTransferFields } from "../utils/utils";
 
 const minPrice = 0;
-const maxPrice = 1000000;
+const maxPrice = 1_000_000;
 
 const initialFilters: Filters = {
   sortBy: { value: "price", dir: "ASC" },
@@ -44,15 +44,15 @@ export class Store {
 
       const carriers = findCarriers(flights);
       const carriersFilter: { [key: string]: boolean } = {};
-      carriers.forEach((carrier) => {
+      for (const carrier of carriers) {
         carriersFilter[carrier] = false;
-      });
+      }
 
       const transfers = makeTransferFields(countTransfers(flights));
       const transfersFilter: { [key: string]: boolean } = {};
-      transfers.forEach((carrier) => {
+      for (const carrier of transfers) {
         transfersFilter[carrier] = false;
-      });
+      }
 
       this.setFlights(flights);
       this.setFilters({
@@ -60,8 +60,8 @@ export class Store {
         carriers: carriersFilter,
         transfers: transfersFilter,
       });
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
     this.setIsFlightsLoading(false);
   };
@@ -78,7 +78,7 @@ export class Store {
     this.filters = filters;
   };
 
-  setNumberOfFlightsToShow = (num: number) => {
-    this.numberOfFlightsToShow = num;
+  setNumberOfFlightsToShow = (number: number) => {
+    this.numberOfFlightsToShow = number;
   };
 }

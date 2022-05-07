@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 import type {
   Carriers,
   FilterBy,
-  SortByDir,
+  SortByDirection,
   SortByValue,
   Transfers,
 } from "../../types/filters";
@@ -18,16 +18,16 @@ import { AppContext } from "../../index";
 export const SearchFilter = observer(() => {
   const { setFilters, filters, isFlightsLoading } = useContext(AppContext);
   const [, startTransition] = useTransition();
-  const handleRadioChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value as SortByValue;
-    const dir = e.target.getAttribute("data-dir") as SortByDir;
+  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value as SortByValue;
+    const direction = event.target.dataset.dir as SortByDirection;
 
-    setFilters({ ...filters, sortBy: { value, dir } });
+    setFilters({ ...filters, sortBy: { value, dir: direction } });
   };
 
-  const handleNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
     startTransition(() =>
-      setFilters({ ...filters, [e.target.name]: Number(e.target.value) })
+      setFilters({ ...filters, [event.target.name]: Number(event.target.value) })
     );
   };
 

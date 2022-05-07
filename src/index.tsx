@@ -6,9 +6,9 @@ import { App } from "./App";
 import { Store } from "./store/store";
 
 // @ts-ignore
-export const AppContext = createContext<Store>(null);
+export const AppContext = createContext<Store>(undefined);
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.querySelector("#root")!).render(
   <StrictMode>
     <AppContext.Provider value={new Store()}>
       <App />

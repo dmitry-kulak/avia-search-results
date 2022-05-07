@@ -1,6 +1,6 @@
 import { curry, pipe, sort } from "ramda";
 
-import type { Filters, SortByDir } from "../types/filters";
+import type { Filters, SortByDirection } from "../types/filters";
 import type { FlightResult } from "../types/flights";
 
 export const findCarriers = (flights: FlightResult[]) => {
@@ -9,7 +9,7 @@ export const findCarriers = (flights: FlightResult[]) => {
     carriers.add(flight.flight.carrier.caption);
   }
 
-  return Array.from(carriers) as string[];
+  return [...carriers] as string[];
 };
 
 export const countTransfers = (flights: FlightResult[]) => {
@@ -25,8 +25,8 @@ export const countTransfers = (flights: FlightResult[]) => {
   return transfers;
 };
 
-export const sortByPrice = (dir: SortByDir, flights: FlightResult[]) => {
-  switch (dir) {
+export const sortByPrice = (direction: SortByDirection, flights: FlightResult[]) => {
+  switch (direction) {
     case "ASC":
       return sort(
         (a, b) => +a.flight.price.total.amount - +b.flight.price.total.amount,
@@ -40,8 +40,8 @@ export const sortByPrice = (dir: SortByDir, flights: FlightResult[]) => {
   }
 };
 
-export const sortByTime = (dir: SortByDir, flights: FlightResult[]) => {
-  switch (dir) {
+export const sortByTime = (direction: SortByDirection, flights: FlightResult[]) => {
+  switch (direction) {
     case "ASC":
       return sort(
         (a, b) =>
@@ -79,7 +79,7 @@ export const filterByTransfers = curry((filters: Filters, flights: FlightResult[
 
   for (const transfer in transfers) {
     if (transfers[transfer]) {
-      activeTransfersFilters.push(parseInt(transfer));
+      activeTransfersFilters.push(Number.parseInt(transfer));
     }
   }
 

@@ -19,8 +19,8 @@ export const Flights = observer(() => {
 
   const renderFlights = (flights: FlightResult[]) => {
     return flights
-      .map((currFlight) => {
-        const { flight } = currFlight;
+      .map((currentFlight) => {
+        const { flight } = currentFlight;
         return (
           <Flight
             carrier={flight.carrier.caption}

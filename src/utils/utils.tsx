@@ -10,7 +10,7 @@ export const convertTime = (minutes: number) => {
 export const showTimeTotal = (time: number) => {
   const [hours, minutes] = convertTime(time);
 
-  return `${hours ? `${hours} ч ` : ""}${minutes} мин`;
+  return hours ? `${hours} ч ` : "" + `${minutes} мин`;
 };
 
 export const renderTransferName = (transfer: string | number) => {
@@ -19,15 +19,15 @@ export const renderTransferName = (transfer: string | number) => {
     [equals(1), always("1 пересадка")],
     [gte(2) && lte(4), always(`${transfer} пересадки`)],
     [T, always(`${transfer} пересадки`)],
-  ])(parseInt(transfer.toString()));
+  ])(Number.parseInt(transfer.toString()));
 };
 
 export const convertDateToTime = (date: string) => {
-  const dateObj = new Date(date);
+  const dateObject = new Date(date);
 
-  const addPad = unless(gt(10), (num) => num.toString().padStart(2, "0"));
+  const addPad = unless(gt(10), (number) => number.toString().padStart(2, "0"));
 
-  return `${addPad(dateObj.getHours())}:${addPad(dateObj.getMinutes())}`;
+  return `${addPad(dateObject.getHours())}:${addPad(dateObject.getMinutes())}`;
 };
 
 export const formatDate = (date: string) => {
@@ -47,13 +47,13 @@ export const formatDate = (date: string) => {
     "ноя.",
     "дек.",
   ];
-  const dateObj = new Date(date);
+  const dateObject = new Date(date);
 
-  return `${dateObj.getDate()} ${months[dateObj.getMonth()]} ${
-    daysOfWeek[dateObj.getDay()]
+  return `${dateObject.getDate()} ${months[dateObject.getMonth()]} ${
+    daysOfWeek[dateObject.getDay()]
   }`;
 };
 
 export const makeTransferFields = (end: number) => {
-  return range(0, end + 1).map((i) => `${i}-transfers`);
+  return range(0, end + 1).map((index) => `${index}-transfers`);
 };

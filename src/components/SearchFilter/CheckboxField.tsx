@@ -12,17 +12,18 @@ type CheckboxFieldProps = {
   filter: string;
 };
 
+const renderLabel = (filterBy: FilterBy, filter: string) => {
+  if (filterBy === "transfers") {
+    return renderTransferName(filter);
+  }
+
+  if (filterBy === "carriers") {
+    return filter;
+  }
+};
+
 export const CheckboxField = observer(({ filterBy, filter }: CheckboxFieldProps) => {
   const { filters, setFilters } = useContext(AppContext);
-  const renderLabel = (filterBy: FilterBy, filter: string) => {
-    if (filterBy === "transfers") {
-      return renderTransferName(filter);
-    }
-
-    if (filterBy === "carriers") {
-      return filter;
-    }
-  };
 
   const handleCheckboxChange = () => {
     setFilters({
